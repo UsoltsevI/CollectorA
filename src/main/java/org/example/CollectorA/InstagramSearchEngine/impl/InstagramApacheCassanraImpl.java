@@ -1,5 +1,5 @@
 package org.example.CollectorA.InstagramSearchEngine;
 
-public class InstagramApacheCassanraImpl implements InstagramSpacheCassandra {
+public class InstagramApacheCassanraImpl implements InstagramApacheCassandra {
 
 }
