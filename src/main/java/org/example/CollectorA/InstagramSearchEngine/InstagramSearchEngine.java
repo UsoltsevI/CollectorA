@@ -6,5 +6,8 @@ package org.example.CollectorA.InstagramSearchEngine;
  */
 
 public interface InstagramSearchEngine {
+    /**
+     * This method starts the search engine work.
+     */
     public void collect();
 }

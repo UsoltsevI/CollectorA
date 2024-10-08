@@ -15,3 +15,5 @@ java -jar ./build/libs/CollectorA.jar
 * [Apache Cassandra](https://cassandra.apache.org/_/index.html)
 * [Gradle](https://gradle.com/)
   - [Gradle cources by TomGeorgy](https://tomgregory.com)
+* [HTML parser: Jsoup](https://jsoup.org/)
+  - [Jsoup HTML Parser Documentation](https://jsoup.org/apidocs/org/jsoup/Jsoup.html)

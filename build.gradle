@@ -32,6 +32,14 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter:3.3.3'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.34'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+    implementation 'org.jsoup:jsoup:1.16.1'
+
     // Declare the dependency for your favourite test framework you want to use in your tests.
     // TestNG is also supported by the Gradle Test task. Just change the
     // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add

@@ -11,13 +11,16 @@ import org.springframework.context.annotation.Bean;
 import java.util.Arrays;
 
 /**
- * The main class of the CollectoA profram. It starts the work of
- * all the collectors.
+ * The main class of the CollectoA profram. It starts the work of all the collectors on different threads.
  * @author UsoltsevI
  */
 
 @SpringBootApplication
 public class CollectorA {
+    /**
+     * The main function and entry point to program.
+     * @param args
+     */
     public static void main(String[] args) {
         System.out.println("CollectorA");
         ApplicationContext context = SpringApplication.run(CollectorA.class, args);

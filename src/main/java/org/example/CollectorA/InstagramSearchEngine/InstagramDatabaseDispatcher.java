@@ -1,5 +1,5 @@
 package org.example.CollectorA.InstagramSearchEngine;
 
-public interface InstagramParser {
+public interface InstagramDatabaseDispatcher {
 
 }
