@@ -1,14 +1,14 @@
 package org.example.CollectorA;
 
 import org.example.CollectorA.InstagramSearchEngine.InstagramSearchEngine;
-import org.example.CollectorA.FacebookSearchEngine.FacebookSearchEngine;
+import org.example.CollectorA.PinterestSearchEngine.PinterestSearchEngine;
 import org.springframework.boot.SpringApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
-import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * The main class of the CollectoA profram. It starts the work of all the collectors on different threads.
@@ -25,22 +25,21 @@ public class CollectorA {
         System.out.println("CollectorA");
         ApplicationContext context = SpringApplication.run(CollectorA.class, args);
         InstagramSearchEngine inst = (InstagramSearchEngine) context.getBean(InstagramSearchEngine.class);
-        inst.collect();
+        inst.collect(getInstagramUsername(), getInstagramPassword());
+//        This should be parallel
+//        PinterestSearchEngine pinterestSearchEngine = (PinterestSearchEngine) context.getBean(PinterestSearchEngine.class);
+//        pinterestSearchEngine.collect();
     }
 
-//    This method prints all the beans founded by ApplicationContext
-//    @Bean
-//    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-//        return args -> {
-//
-//            System.out.println("Let's inspect the beans provided by Spring Boot:");
-//
-//            String[] beanNames = ctx.getBeanDefinitionNames();
-//            Arrays.sort(beanNames);
-//            for (String beanName : beanNames) {
-//                System.out.println(beanName);
-//            }
-//
-//        };
-//    }
+    private static String getInstagramUsername() {
+        System.out.println("Instagram username:");
+        Scanner in = new Scanner(System.in);
+        return in.next();
+    }
+
+    private static String getInstagramPassword() {
+        System.out.println("Instagram password:");
+        return new String(System.console().readPassword());
+    }
+
 }

@@ -9,5 +9,5 @@ public interface InstagramSearchEngine {
     /**
      * This method starts the search engine work.
      */
-    public void collect();
+    public void collect(String username, String password);
 }
