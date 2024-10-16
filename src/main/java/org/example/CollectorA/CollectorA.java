@@ -1,5 +1,9 @@
 package org.example.CollectorA;
 
+import java.util.Scanner;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
+
 import org.example.CollectorA.InstagramSearchEngine.InstagramSearchEngine;
 import org.example.CollectorA.PinterestSearchEngine.PinterestSearchEngine;
 import org.springframework.boot.SpringApplication;
@@ -8,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
-import java.util.Scanner;
+import lombok.AllArgsConstructor;
 
 /**
  * The main class of the CollectoA profram. It starts the work of all the collectors on different threads.
@@ -21,13 +25,21 @@ public class CollectorA {
      * @param args - nothing
      */
     public static void main(String[] args) {
-//        System.out.println("CollectorA");
         ApplicationContext context = SpringApplication.run(CollectorA.class, args);
-        InstagramSearchEngine inst = (InstagramSearchEngine) context.getBean(InstagramSearchEngine.class);
-        inst.collect(getInstagramUsername(), getInstagramPassword());
-//        This should be parallel
-//        PinterestSearchEngine pinterestSearchEngine = (PinterestSearchEngine) context.getBean(PinterestSearchEngine.class);
-//        pinterestSearchEngine.collect();
+
+        InstagramSearchEngine instagram = (InstagramSearchEngine) context.getBean(InstagramSearchEngine.class);
+        PinterestSearchEngine pinterest = (PinterestSearchEngine) context.getBean(PinterestSearchEngine.class);
+
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+
+        String instUsername     = getInstagramUsername();
+        String instPassword     = getInstagramPassword();
+        String pintAccessToken  = getPinterestAccessToken();
+
+        executor.submit(new InstagramRunnable(instagram, instUsername, instPassword));
+        executor.submit(new PinterestRunnable(pinterest, pintAccessToken));
+
+        executor.shutdown();
     }
 
     private static String getInstagramUsername() {
@@ -40,4 +52,31 @@ public class CollectorA {
         return new String(System.console().readPassword());
     }
 
+    private static String getPinterestAccessToken() {
+        System.out.println("PinterestAccessToken:");
+        return new Scanner(System.in).next();
+    }
+
+    @AllArgsConstructor
+    private static class InstagramRunnable implements Runnable {
+        private InstagramSearchEngine instagram;
+        private String username;
+        private String password;
+
+        @Override
+        public void run() {
+            instagram.collect(username, password);
+        }
+    }
+
+    @AllArgsConstructor
+    private static class PinterestRunnable implements Runnable {
+        private PinterestSearchEngine pinterest;
+        private String accessToken;
+
+        @Override
+        public void run() {
+            pinterest.collect(accessToken);
+        }
+    }
 }

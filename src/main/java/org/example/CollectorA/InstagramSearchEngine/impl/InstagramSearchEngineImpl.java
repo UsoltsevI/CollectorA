@@ -14,15 +14,15 @@ import org.brunocvcunha.instagram4j.requests.payload.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.example.CollectorA.Database.*;
-
+import org.example.CollectorA.Database.DatabaseDispatcher;
+import org.example.CollectorA.Database.UserDataModel;
 /**
  * Instagram Search Engine implementstion
  * @author UsoltsevI
  */
 @Component
 public class InstagramSearchEngineImpl implements InstagramSearchEngine {
-    private final Logger log = LoggerFactory.getLogger(HBaseDispatcher.class);
+    private final Logger log = LoggerFactory.getLogger(InstagramSearchEngineImpl.class);
     private Instagram4j instagram;
     @Autowired
     private DatabaseDispatcher database;
@@ -116,6 +116,7 @@ public class InstagramSearchEngineImpl implements InstagramSearchEngine {
         return data;
     }
 
+    // ???
     private InstagramUser getNextUser() {
         return null;
     }

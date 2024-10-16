@@ -22,6 +22,12 @@ To run the project in Docker Container:
 docker images
 docker run <image>
 ```
+
+To generate a javadoc:
+```
+./gradlew javadoc
+```
+
 ## Toolchain
 * [Spring Framework](https://spring.io/)
   - [Spring Framework Reference Documentation](https://docs.spring.io/spring-framework/docs/3.2.5.RELEASE/spring-framework-reference/htmlsingle/#overview-usagescenarios)
