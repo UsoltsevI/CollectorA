@@ -11,7 +11,7 @@ public interface DatabaseDispatcher {
      * This method opens a new connections with the database and
      * creates a table with tableName. If such table is already exists
      * it connects to it. Returns true if the operations complited successfully
-     * @param tableName
+     * @param tableName - name of table to connect
      * @return true if connected successfully, false if failed
      */
     public boolean connect(String tableName);
@@ -26,7 +26,7 @@ public interface DatabaseDispatcher {
     /**
      * This method checks if a user with the same id has been recorded to the database
      * Returns true if already recorded, false if not
-     * @param id - userid or username to check if exists
+     * @param data - data (ruquired cirrect id) to check if it exists
      * @return true if recorded, false if not
      */
     public boolean isAlreadyRecorded(DataModel data);

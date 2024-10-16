@@ -37,10 +37,6 @@ public class UserDataModel implements DataModel {
         this.isPrivate = isPrivate;
     }
 
-    /**
-     * Returns all fields (except id) as HashMap<byte[] fieldName, byte[] fieldValue>
-     * @return all fileds and its values as bytes
-     */
     @Override
     public HashMap<byte[],byte[]> getFieldsAsBytes() {
         HashMap<byte[],byte[]> map = new HashMap<>();

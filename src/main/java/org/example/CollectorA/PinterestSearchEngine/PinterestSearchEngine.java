@@ -1,6 +1,7 @@
 package org.example.CollectorA.PinterestSearchEngine;
 
 /**
+ * Pinterest Search Engine interface
  * @author UsoltsevI
  */
 public interface PinterestSearchEngine {

@@ -18,10 +18,10 @@ import java.util.Scanner;
 public class CollectorA {
     /**
      * The main function and entry point to program.
-     * @param args
+     * @param args - nothing
      */
     public static void main(String[] args) {
-        System.out.println("CollectorA");
+//        System.out.println("CollectorA");
         ApplicationContext context = SpringApplication.run(CollectorA.class, args);
         InstagramSearchEngine inst = (InstagramSearchEngine) context.getBean(InstagramSearchEngine.class);
         inst.collect(getInstagramUsername(), getInstagramPassword());

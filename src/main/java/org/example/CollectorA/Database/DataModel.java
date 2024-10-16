@@ -9,7 +9,7 @@ import java.util.HashMap;
 public interface DataModel {
     public byte[] getId();
     /**
-     * Returns all fields as HashMap<byte[] fieldName, byte[] fieldValue>
+     * Returns all fields as HashMap{@literal <}byte[] fieldName, byte[] fieldValue{@literal >}
      * @return all fileds and its values as bytes
      */
     public HashMap<byte[],byte[]> getFieldsAsBytes();
