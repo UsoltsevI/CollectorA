@@ -33,14 +33,14 @@ public class HBaseDispatcher implements DatabaseDispatcher, Closeable {
     private Connection connection;
     private Table table;
     private List<String> columnFamilies;
-    private final Logger log = LoggerFactory.getLogger(HBaseDispatcher.class);;
+    private final Logger log = LoggerFactory.getLogger(HBaseDispatcher.class);
 
     /**
      * Creates a connection with the database and and creates a table
      * if it doensn't exist
      * @param tableName
      */
-    HBaseDispatcher(String tableName) throws IOException {
+    public HBaseDispatcher(String tableName) throws IOException {
         this.tableName = TableName.valueOf(tableName);
         columnFamilies = new ArrayList<>();
         columnFamilies.add("users");
