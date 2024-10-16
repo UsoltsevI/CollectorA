@@ -1,6 +1,7 @@
 package org.example.CollectorA.InstagramSearchEngine;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +24,18 @@ import org.example.CollectorA.Database.*;
 public class InstagramSearchEngineImpl implements InstagramSearchEngine {
     private final Logger log = LoggerFactory.getLogger(HBaseDispatcher.class);
     private Instagram4j instagram;
+    @Autowired
     private DatabaseDispatcher database;
-    private userResult currentUser;
+    private InstagramUser currentUser;
 
     @Override
     public void collect(String username, String password) {
         System.out.println("instagram collecting");
 
-        try {
-            database = new HBaseDispatcher("Instagram");
-        } catch (IOException e) {
-            log.info(e.getMessage());
+        if (database.connect(getTableName())) {
+            log.info("Instagram connection to the database is successful");
+        } else {
+            log.info("Instagram connection to the database is failed");
             return;
         }
 
@@ -52,27 +54,39 @@ public class InstagramSearchEngineImpl implements InstagramSearchEngine {
         }
     }
 
+    private String getTableName() {
+        return "Instagram";
+    }
+
     private void saveUserInfo(UserDataModel data) {
-        database.saveUser(data);
+        database.saveData(data);
     }
 
     private UserDataModel getUserData(InstagramUser user) {
         UserDataModel data = new UserDataModel();
-        data.setUserId(user.getPk().toString());
-        data.setUserId(user.getIsPrivate());
-        data.setFollowersAmount(user.getFollowersCount());
-        data.setSubscriptionsAmount(user.getFollowingCount());
+        data.setId(Long.toString(user.getPk()));
+        data.setIsPrivate(user.is_private);
+        data.setFollowersAmount(Long.valueOf(user.follower_count));
+        data.setSubscriptionsAmount(Long.valueOf(user.following_count));
 
-        InstagramGetUserReelMediaFeedResult postsResult
-                = instagram.sendRequest(new InstagramGetUserReelMediaFeedRequest(user.getPk()));
+//        InstagramGetUserReelMediaFeedResult postsResult
+//                = instagram.sendRequest(new InstagramGetUserReelMediaFeedRequest(user.getPk()));
+        InstagramFeedResult postsResult;
+        try {
+            postsResult = instagram.sendRequest(new InstagramUserFeedRequest(user.getPk()));
+        } catch (IOException e) {
+            log.info(e.getMessage());
+            return data;
+        }
+
         List<InstagramFeedItem> items = postsResult.getItems();
 
-        if (items.size < 0) {
-            data.setAverageLiskesAmount(0);
-            data.setAverageCommentsAmount(0);
-            data.setAverageRepostAmount(0);
-            data.setAveragePostSize(0);
-            data.setAveragePostingPeriod(0);
+        if (items.size() < 0) {
+            data.setAverageLikesAmount   (0l);
+            data.setAverageCommentsAmount(0l);
+            data.setAverageRepostAmount  (0l);
+            data.setAveragePostSize      (0l);
+            data.setAveragePostingPeriod (0l);
             return data;
         }
 
@@ -85,18 +99,20 @@ public class InstagramSearchEngineImpl implements InstagramSearchEngine {
             totalLikesAmount    += item.like_count;
             totalCommentsAmount += item.comment_count;
             totalRepostAmount   += 0;
-            totalPostSize       = 0;
+            totalPostSize       = 0; // ???
         }
 
-        long postingPeriod = items.get(items.size() - 1).devise_timestamp - items.get(0).devise_timestamp;
+        long postingPeriod = items.get(items.size() - 1).device_timestamp - items.get(0).device_timestamp;
 
-        data.setAverageLiskesAmount(totalLikesAmount / items.size());
+        data.setAverageLikesAmount   (totalLikesAmount    / items.size());
         data.setAverageCommentsAmount(totalCommentsAmount / items.size());
-        data.setAverageRepostAmount(totalRepostAmount / items.size());
-        data.setAveragePostSize(totalPostSize / items.size());
-        data.setAveragePostingPeriod(postringPeriod);
+        data.setAverageRepostAmount  (totalRepostAmount   / items.size());
+        data.setAveragePostSize      (totalPostSize       / items.size());
+        data.setAveragePostingPeriod (postingPeriod);
         return data;
     }
 
-
+    private InstagramUser getNextUser() {
+        return null;
+    }
 }

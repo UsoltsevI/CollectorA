@@ -1,5 +1,8 @@
 # CollectorA
 
+## Program Structure
+See [Scheme in Figma](https://www.figma.com/board/RzTIebuqjBTp3RjnWyckLG/CollectorA?node-id=0-1&node-type=canvas&t=JJLXHee1CrzO8b3q-0)
+
 ## Usage
 To build the project using Gradle, type on the command line:
 ```
@@ -32,6 +35,8 @@ docker run <image>
 * instagram4j:
   - [instagram4j git](https://github.com/instagram4j/instagram4j) (last update 2022)
   - org.brunocvcunha.instagram4j (last update 2020)
+  - [instagram4j org.brunocvcunha](https://www.javatips.net/api/instagram4j-master/src/main/java/org/brunocvcunha/instagram4j/Instagram4j.java)
+  - [instagram4j org.brunocvcunha form git](https://github.com/mikeekeghe/gitm4j) (last update 2019)
 * [Pinterest API](https://github.com/dempe/pinterest-java/)
 * [Docker](https://www.docker.com/)
   - [Docker hub](https://hub.docker.com/)

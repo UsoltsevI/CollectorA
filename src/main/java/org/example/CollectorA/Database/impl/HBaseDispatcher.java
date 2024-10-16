@@ -16,6 +16,9 @@ import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Admin;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
+import org.apache.hadoop.hbase.client.TableDescriptorBuilder;
+import org.apache.hadoop.hbase.client.ColumnFamilyDescriptorBuilder.ModifyableColumnFamilyDescriptor;
+import org.apache.hadoop.hbase.client.ColumnFamilyDescriptor;
 import org.apache.hadoop.hbase.client.Table;
 import org.apache.hadoop.hbase.client.Put;
 import org.apache.hadoop.hbase.client.Get;
@@ -28,23 +31,25 @@ import org.slf4j.LoggerFactory;
  * @author UsoltsevI
  */
 @Component
-public class HBaseDispatcher implements DatabaseDispatcher, Closeable {
+public class HBaseDispatcher implements DatabaseDispatcher {
     private TableName tableName;
     private Connection connection;
     private Table table;
     private List<String> columnFamilies;
     private final Logger log = LoggerFactory.getLogger(HBaseDispatcher.class);
 
-    /**
-     * Creates a connection with the database and and creates a table
-     * if it doensn't exist
-     * @param tableName
-     */
-    public HBaseDispatcher(String tableName) throws IOException {
+    @Override
+    public boolean connect(String tableName) {
         this.tableName = TableName.valueOf(tableName);
         columnFamilies = new ArrayList<>();
         columnFamilies.add("users");
-        loadTable();
+        try {
+            loadTable();
+        } catch (IOException e) {
+            log.info(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     private void loadTable() throws IOException {
@@ -55,11 +60,12 @@ public class HBaseDispatcher implements DatabaseDispatcher, Closeable {
 
         if (!admin.tableExists(tableName)) {
             log.info("Creating table '" + tableName.getNameAsString() + "'");
-            HTableDescriptor htable = new HTableDescriptor(tableName);
-            for (String name : columnFamilies) {
-                htable.addFamily(new HColumnDescriptor(name));
-            }
-            admin.createTable(htable);
+            ColumnFamilyDescriptor columnFamilyDescriptor
+                    = new ModifyableColumnFamilyDescriptor(Bytes.toBytes(getUsersColumnFamilyName()));
+            TableDescriptorBuilder htable = TableDescriptorBuilder
+                    .newBuilder(tableName)
+                    .setColumnFamily(columnFamilyDescriptor);
+            admin.createTable(htable.build());
             log.info("Table is created");
         } else {
             log.info("Table '" + tableName.getNameAsString() + "' already exists");
@@ -69,9 +75,13 @@ public class HBaseDispatcher implements DatabaseDispatcher, Closeable {
         admin.close();
     }
 
+    private String getUsersColumnFamilyName() {
+        return "users";
+    }
+
     @Override
-    public boolean saveData(UserDataModel data) {
-        Put put = new Put(Bytes.toBytes(data.getUserId()));
+    public boolean saveData(DataModel data) {
+        Put put = new Put(data.getId());
         HashMap<byte[],byte[]> fields = data.getFieldsAsBytes();
         for (Map.Entry<byte[],byte[]> field : fields.entrySet()) {
             put.addColumn(Bytes.toBytes(columnFamilies.get(0))
@@ -88,9 +98,9 @@ public class HBaseDispatcher implements DatabaseDispatcher, Closeable {
     }
 
     @Override
-    public boolean isAlreadyRecorded(UserDataModel data) {
+    public boolean isAlreadyRecorded(DataModel data) {
         try {
-            table.exists(new Get(Bytes.toBytes(data.getUserId())));
+            table.exists(new Get(data.getId()));
             return true;
         } catch (IOException e) {
             log.info(e.getMessage());

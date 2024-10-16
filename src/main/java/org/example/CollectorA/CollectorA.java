@@ -33,8 +33,7 @@ public class CollectorA {
 
     private static String getInstagramUsername() {
         System.out.println("Instagram username:");
-        Scanner in = new Scanner(System.in);
-        return in.next();
+        return new Scanner(System.in).next();
     }
 
     private static String getInstagramPassword() {

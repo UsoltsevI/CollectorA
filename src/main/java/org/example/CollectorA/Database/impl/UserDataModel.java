@@ -13,8 +13,8 @@ import lombok.Data;
 
 @Component
 @Data
-public class UserDataModel {
-    private String userId;
+public class UserDataModel implements DataModel {
+    private String id;
     private boolean isPrivate;
     private Long subscriptionsAmount;
     private Long followersAmount;
@@ -24,14 +24,27 @@ public class UserDataModel {
     private Long averagePostSize;
     private Long averagePostingPeriod;
 
+    @Override
+    public byte[] getId() {
+        return Bytes.toBytes(id);
+    }
+
     /**
-     * Returns all fields as HashMap<byte[] fieldName, byte[] fieldValue>
+     * Setter that is not created by lombok
+     * @param isPrivate
+     */
+    public void setIsPrivate(boolean isPrivate) {
+        this.isPrivate = isPrivate;
+    }
+
+    /**
+     * Returns all fields (except id) as HashMap<byte[] fieldName, byte[] fieldValue>
      * @return all fileds and its values as bytes
      */
+    @Override
     public HashMap<byte[],byte[]> getFieldsAsBytes() {
         HashMap<byte[],byte[]> map = new HashMap<>();
 
-        map.put(Bytes.toBytes("userId"),               Bytes.toBytes(userId)               );
         map.put(Bytes.toBytes("isPrivate"),            Bytes.toBytes(isPrivate)            );
         map.put(Bytes.toBytes("subscriptionsAmount"),  Bytes.toBytes(subscriptionsAmount)  );
         map.put(Bytes.toBytes("followersAmount"),      Bytes.toBytes(followersAmount)      );
