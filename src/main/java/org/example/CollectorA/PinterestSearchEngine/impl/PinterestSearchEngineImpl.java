@@ -12,7 +12,7 @@ import java.lang.StringBuilder;
 public class PinterestSearchEngineImpl implements PinterestSearchEngine {
 
     @Override
-    public void collect() {
+    public void collect(String accessToken) {
         System.out.println("Pinterest collecting");
 //        Pinterest pinterest = new Pinterest(acsessToken);
 

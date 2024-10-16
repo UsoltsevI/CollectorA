@@ -59,7 +59,11 @@ public class InstagramSearchEngineImpl implements InstagramSearchEngine {
     }
 
     private void saveUserInfo(UserDataModel data) {
-        database.saveData(data);
+        if (database.saveData(data)) {
+            log.info("user:" + data.toString() + "saved");
+        } else {
+            log.info("user saving failure");
+        }
     }
 
     private UserDataModel getUserData(InstagramUser user) {
@@ -99,7 +103,7 @@ public class InstagramSearchEngineImpl implements InstagramSearchEngine {
             totalLikesAmount    += item.like_count;
             totalCommentsAmount += item.comment_count;
             totalRepostAmount   += 0;
-            totalPostSize       = 0; // ???
+            totalPostSize       += item.original_width * item.original_height * 4; // ???
         }
 
         long postingPeriod = items.get(items.size() - 1).device_timestamp - items.get(0).device_timestamp;

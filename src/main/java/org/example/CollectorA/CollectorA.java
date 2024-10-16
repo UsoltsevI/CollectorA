@@ -14,7 +14,6 @@ import java.util.Scanner;
  * The main class of the CollectoA profram. It starts the work of all the collectors on different threads.
  * @author UsoltsevI
  */
-
 @SpringBootApplication
 public class CollectorA {
     /**

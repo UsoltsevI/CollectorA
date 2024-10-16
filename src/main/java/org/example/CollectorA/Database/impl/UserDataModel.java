@@ -4,15 +4,15 @@ import java.util.HashMap;
 import org.springframework.stereotype.Component;
 import org.apache.hadoop.hbase.util.Bytes;
 import lombok.Data;
+import lombok.ToString;
 
 /**
- * This class describes the model of user data collected and recorded in the DB.
- *
+ * This class describes the model of user data collected and recorded in the DB
  * @author UsoltsevI
  */
-
 @Component
 @Data
+@ToString
 public class UserDataModel implements DataModel {
     private String id;
     private boolean isPrivate;
