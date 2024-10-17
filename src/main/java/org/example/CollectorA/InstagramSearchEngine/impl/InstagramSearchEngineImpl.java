@@ -2,20 +2,20 @@ package org.example.CollectorA.InstagramSearchEngine;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Iterator;
 
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.brunocvcunha.instagram4j.Instagram4j;
 import org.apache.http.client.ClientProtocolException;
 import org.brunocvcunha.instagram4j.requests.*;
 import org.brunocvcunha.instagram4j.requests.payload.*;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.example.CollectorA.Database.DatabaseDispatcher;
 import org.example.CollectorA.Database.UserDataModel;
+
 /**
  * Instagram Search Engine implementstion
  * @author UsoltsevI
@@ -27,6 +27,7 @@ public class InstagramSearchEngineImpl implements InstagramSearchEngine {
     @Autowired
     private DatabaseDispatcher database;
     private InstagramUser currentUser;
+    private Iterator<InstagramUserSummary> users;
 
     @Override
     public void collect(String username, String password) {
@@ -43,6 +44,10 @@ public class InstagramSearchEngineImpl implements InstagramSearchEngine {
         try {
             instagram.setup();
             instagram.login();
+
+            currentUser = instagram
+                    .sendRequest(new InstagramSearchUsernameRequest(username))
+                    .getUser();
 
             while (true) {
                 saveUserInfo(getUserData(getNextUser()));
@@ -73,9 +78,8 @@ public class InstagramSearchEngineImpl implements InstagramSearchEngine {
         data.setFollowersAmount(Long.valueOf(user.follower_count));
         data.setSubscriptionsAmount(Long.valueOf(user.following_count));
 
-//        InstagramGetUserReelMediaFeedResult postsResult
-//                = instagram.sendRequest(new InstagramGetUserReelMediaFeedRequest(user.getPk()));
         InstagramFeedResult postsResult;
+        
         try {
             postsResult = instagram.sendRequest(new InstagramUserFeedRequest(user.getPk()));
         } catch (IOException e) {
@@ -116,8 +120,34 @@ public class InstagramSearchEngineImpl implements InstagramSearchEngine {
         return data;
     }
 
-    // ???
     private InstagramUser getNextUser() {
-        return null;
+        try {
+            if (users.hasNext()) {
+                currentUser = instagram
+                        .sendRequest(new InstagramSearchUsernameRequest(users.next().getUsername()))
+                        .getUser();
+            } else {
+                List<InstagramUserSummary> usersList
+                        = instagram
+                        .sendRequest(new InstagramGetUserFollowersRequest(currentUser.getPk()))
+                        .getUsers();
+                usersList.addAll(instagram
+                        .sendRequest(new InstagramGetUserFollowingRequest(currentUser.getPk()))
+                        .getUsers());
+                users = usersList.iterator();
+
+                if (users.hasNext()) {
+                    currentUser = instagram
+                            .sendRequest(new InstagramSearchUsernameRequest(users.next().getUsername()))
+                            .getUser();
+                } else {
+                    log.info("users is empty, last user: " + currentUser.toString());
+                }
+            }
+        } catch (IOException e) {
+            log.info(e.getMessage());
+        }
+
+        return currentUser;
     }
 }

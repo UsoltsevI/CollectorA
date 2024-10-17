@@ -34,6 +34,7 @@ To generate a javadoc:
   - [Spring Boot](https://spring.io/projects/spring-boot)
 * [Hbase](https://hbase.apache.org/)
   - [Hbase reference guide](https://hbase.apache.org/book.html)
+  - [HBase (client) javadoc](https://hbase.apache.org/devapidocs/org/apache/hadoop/hbase/client/package-summary.html)
 * [Gradle](https://gradle.com/)
   - [Gradle cources by TomGeorgy](https://tomgregory.com)
 * [HTML parser: Jsoup](https://jsoup.org/)
