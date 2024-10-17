@@ -30,12 +30,12 @@ public class InstagramSearchEngineImpl implements InstagramSearchEngine {
 
     @Override
     public void collect(String username, String password) {
-        System.out.println("instagram collecting");
+        log.info("Collecting started");
 
         if (database.connect(getTableName())) {
-            log.info("Instagram connection to the database is successful");
+            log.info("Connected to the database");
         } else {
-            log.info("Instagram connection to the database is failed");
+            log.info("Connection to the database is failed");
             return;
         }
 

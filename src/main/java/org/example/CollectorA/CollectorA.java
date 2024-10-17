@@ -36,8 +36,8 @@ public class CollectorA {
         String instPassword     = getInstagramPassword();
         String pintAccessToken  = getPinterestAccessToken();
 
-        executor.submit(new InstagramRunnable(instagram, instUsername, instPassword));
-        executor.submit(new PinterestRunnable(pinterest, pintAccessToken));
+        executor.submit(() -> instagram.collect(instUsername, instPassword));
+        executor.submit(() -> pinterest.collect(pintAccessToken));
 
         executor.shutdown();
     }
@@ -55,28 +55,5 @@ public class CollectorA {
     private static String getPinterestAccessToken() {
         System.out.println("PinterestAccessToken:");
         return new Scanner(System.in).next();
-    }
-
-    @AllArgsConstructor
-    private static class InstagramRunnable implements Runnable {
-        private InstagramSearchEngine instagram;
-        private String username;
-        private String password;
-
-        @Override
-        public void run() {
-            instagram.collect(username, password);
-        }
-    }
-
-    @AllArgsConstructor
-    private static class PinterestRunnable implements Runnable {
-        private PinterestSearchEngine pinterest;
-        private String accessToken;
-
-        @Override
-        public void run() {
-            pinterest.collect(accessToken);
-        }
     }
 }

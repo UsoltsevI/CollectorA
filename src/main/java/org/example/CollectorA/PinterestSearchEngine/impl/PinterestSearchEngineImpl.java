@@ -23,12 +23,12 @@ public class PinterestSearchEngineImpl implements PinterestSearchEngine {
 
     @Override
     public void collect(String accessToken) {
-        log.info("Pinterest collecting");
+        log.info("Collecting started");
 
         if (database.connect(getTableName())) {
-            log.info("Pinterest connection to the database is successful");
+            log.info("Connected to the database");
         } else {
-            log.info("Pinterest connection to the database is failed");
+            log.info("Connection to the database is failed");
             return;
         }
 
