@@ -79,7 +79,7 @@ public class InstagramSearchEngineImpl implements InstagramSearchEngine {
         data.setSubscriptionsAmount(Long.valueOf(user.following_count));
 
         InstagramFeedResult postsResult;
-        
+
         try {
             postsResult = instagram.sendRequest(new InstagramUserFeedRequest(user.getPk()));
         } catch (IOException e) {

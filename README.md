@@ -1,31 +1,26 @@
 # CollectorA
 
+[AnalyzerA](https://github.com/UsoltsevI/AnalyzerA)
+
 ## Program Structure
-See [Scheme in Figma](https://www.figma.com/board/RzTIebuqjBTp3RjnWyckLG/CollectorA?node-id=0-1&node-type=canvas&t=JJLXHee1CrzO8b3q-0)
+See [scheme in Figma](https://www.figma.com/board/RzTIebuqjBTp3RjnWyckLG/CollectorA?node-id=0-1&node-type=canvas&t=JJLXHee1CrzO8b3q-0)
 
 ## Usage
-To build the project using Gradle, type on the command line:
+To build the project into jar file using Gradle, type on the command line:
 ```
 ./gradlew build
 ```
-To run the compiled program:
+To work with the project via docker compose go
+to the [./docker/client](./docker/client) directory.
+The following commands are maintained:
 ```
-java -jar ./build/libs/CollectorA-0.0.1.jar 
-```
-
-To build the project in Docker Container:
-```
-docker build .
-```
-To run the project in Docker Container:
-```
-docker images
-docker run <image>
-```
-
-To generate a javadoc:
-```
-./gradlew javadoc
+./create.sh
+./up.sh
+./start.sh
+./login.sh
+./restart.sh
+./stop.sh
+./down.sh
 ```
 
 ## Toolchain
@@ -35,6 +30,7 @@ To generate a javadoc:
 * [Hbase](https://hbase.apache.org/)
   - [Hbase reference guide](https://hbase.apache.org/book.html)
   - [HBase (client) javadoc](https://hbase.apache.org/devapidocs/org/apache/hadoop/hbase/client/package-summary.html)
+  - [HBase configuration properties](https://docs.ezmeral.hpe.com/datafabric-customer-managed/78/HBase/HBaseConfigurationProperties.html)
 * [Gradle](https://gradle.com/)
   - [Gradle cources by TomGeorgy](https://tomgregory.com)
 * [HTML parser: Jsoup](https://jsoup.org/)

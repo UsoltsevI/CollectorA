@@ -1,0 +1,48 @@
+# Collects CollectorA and HBase into containers and combines it
+
+services:
+  hbase:
+    container_name: hbase
+    image: mckdev/hbase:nightly
+    hostname: hbase
+    volumes:
+      - ./docker/hbase/hbase-site.xml:/opt/hbase/conf/hbase-site.xml
+      - ./docker/hbase-data:/data
+    ports:
+      - "2181:2181"   # hbase.zookeeper.property.ClientPort
+      - "8085:8080"   # REST API
+      - "9090:9090"   # Thrift API
+      - "16000:16000" # Master API
+      - "16010:16010" # Master UI
+      - "16020:16020" # Regionserver API
+      - "16030:16030" # Regionserver UI
+    networks:
+      - backend
+
+  collectora:
+    container_name: collectora
+    build: ./docker/image
+    command: bash -c "chmod +x ${COLLECTORA_DIR}/scripts/*
+      && tail -f /dev/null"
+    volumes:
+      - ./gradle:${COLLECTORA_DIR}/gradle
+      - ./scripts:${COLLECTORA_DIR}/scripts
+      - ./src:${COLLECTORA_DIR}/src
+      - ./build.gradle:${COLLECTORA_DIR}/build.gradle
+      - ./gradlew:${COLLECTORA_DIR}/gradlew
+      - ./gradlew.bat:${COLLECTORA_DIR}/gradlew.bat
+      - ./settings.gradle:${COLLECTORA_DIR}/settings.gradle
+    networks:
+      - backend
+    ports:
+      - "80:8080"
+      - "443:8080"
+    depends_on:
+      - hbase
+
+networks:
+  backend:
+    driver: bridge
+#    driver_opts:
+#      com.docker.network.bridge.host_binding_ipv4: "127.0.0.1"
+#    attachable: true
