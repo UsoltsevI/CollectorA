@@ -61,7 +61,8 @@ public class HBaseDispatcher implements DatabaseDispatcher {
         if (!admin.tableExists(tableName)) {
             log.info("Creating table '" + tableName.getNameAsString() + "'");
             ColumnFamilyDescriptor columnFamilyDescriptor
-                    = new ModifyableColumnFamilyDescriptor(Bytes.toBytes(getUsersColumnFamilyName()));
+                    = new ModifyableColumnFamilyDescriptor(
+                            Bytes.toBytes(getUsersColumnFamilyName()));
             TableDescriptorBuilder htable = TableDescriptorBuilder
                     .newBuilder(tableName)
                     .setColumnFamily(columnFamilyDescriptor);
@@ -90,11 +91,11 @@ public class HBaseDispatcher implements DatabaseDispatcher {
         }
         try {
             table.put(put);
+            return true;
         } catch (IOException e) {
             log.info(e.getMessage());
             return false;
         }
-        return true;
     }
 
     @Override
@@ -104,8 +105,8 @@ public class HBaseDispatcher implements DatabaseDispatcher {
             return true;
         } catch (IOException e) {
             log.info(e.getMessage());
+            return false;
         }
-        return false;
     }
 
     @Override

@@ -35,3 +35,4 @@ To manage the project work see [/docs/Scripts.md](./docs/Scripts.md).
 * [Docker](https://www.docker.com/)
   - [Docker hub](https://hub.docker.com/)
   - [Docker compose run](https://docs.docker.com/reference/cli/docker/compose/run/)
+* [Google code style](https://habr.com/ru/articles/513176/)

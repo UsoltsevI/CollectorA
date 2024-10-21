@@ -3,7 +3,12 @@ package org.example.CollectorA.Database;
 /**
  * Database Dispatcher interface.
  * It uses to connect to the database and operate with a one table from the database.
- * There are only commands to write data to the database
+ * There are only commands to write data to the database and to check
+ * if the element has already been recorded.
+ *
+ * This interface implies that the connection to the server
+ * opens when the connect() function is called and closes
+ * when the close() function is called.
  * @author UsoltsevI
  */
 public interface DatabaseDispatcher {

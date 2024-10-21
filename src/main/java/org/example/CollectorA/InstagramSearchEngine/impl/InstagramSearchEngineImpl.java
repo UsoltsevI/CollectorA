@@ -22,12 +22,12 @@ import org.example.CollectorA.Database.UserDataModel;
  */
 @Component
 public class InstagramSearchEngineImpl implements InstagramSearchEngine {
-    private final Logger log = LoggerFactory.getLogger(InstagramSearchEngineImpl.class);
     private Instagram4j instagram;
-    @Autowired
-    private DatabaseDispatcher database;
     private InstagramUser currentUser;
     private Iterator<InstagramUserSummary> users;
+    @Autowired
+    private DatabaseDispatcher database;
+    private final Logger log = LoggerFactory.getLogger(InstagramSearchEngineImpl.class);
 
     @Override
     public void collect(String username, String password) {
@@ -55,7 +55,6 @@ public class InstagramSearchEngineImpl implements InstagramSearchEngine {
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return;
         }
     }
 
@@ -74,7 +73,7 @@ public class InstagramSearchEngineImpl implements InstagramSearchEngine {
     private UserDataModel getUserData(InstagramUser user) {
         UserDataModel data = new UserDataModel();
         data.setId(Long.toString(user.getPk()));
-        data.setIsPrivate(user.is_private);
+        data.setPrivate(user.is_private);
         data.setFollowersAmount(Long.valueOf(user.follower_count));
         data.setSubscriptionsAmount(Long.valueOf(user.following_count));
 

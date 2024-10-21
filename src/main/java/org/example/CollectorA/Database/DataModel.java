@@ -7,6 +7,10 @@ import java.util.HashMap;
  * @author UsoltsevI
  */
 public interface DataModel {
+    /**
+     * All types of DataModel must have id. This function returns id in bytes
+     * @return id od this data
+     */
     public byte[] getId();
     /**
      * Returns all fields as HashMap{@literal <}byte[] fieldName, byte[] fieldValue{@literal >}

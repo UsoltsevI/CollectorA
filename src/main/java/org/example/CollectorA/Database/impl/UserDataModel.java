@@ -4,6 +4,8 @@ import java.util.HashMap;
 import org.springframework.stereotype.Component;
 import org.apache.hadoop.hbase.util.Bytes;
 import lombok.Data;
+import lombok.Setter;
+import lombok.AccessLevel;
 import lombok.ToString;
 
 /**
@@ -16,25 +18,17 @@ import lombok.ToString;
 public class UserDataModel implements DataModel {
     private String id;
     private boolean isPrivate;
-    private Long subscriptionsAmount;
-    private Long followersAmount;
-    private Long averageLikesAmount;
-    private Long averageCommentsAmount;
-    private Long averageRepostAmount;
-    private Long averagePostSize;
-    private Long averagePostingPeriod;
+    private long subscriptionsAmount;
+    private long followersAmount;
+    private long averageLikesAmount;
+    private long averageCommentsAmount;
+    private long averageRepostAmount;
+    private long averagePostSize;
+    private long averagePostingPeriod;
 
     @Override
     public byte[] getId() {
         return Bytes.toBytes(id);
-    }
-
-    /**
-     * Setter that is not created by lombok
-     * @param isPrivate
-     */
-    public void setIsPrivate(boolean isPrivate) {
-        this.isPrivate = isPrivate;
     }
 
     @Override
