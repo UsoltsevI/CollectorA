@@ -3,25 +3,15 @@
 [AnalyzerA](https://github.com/UsoltsevI/AnalyzerA)
 
 ## Program Structure
-See [scheme in Figma](https://www.figma.com/board/RzTIebuqjBTp3RjnWyckLG/CollectorA?node-id=0-1&node-type=canvas&t=JJLXHee1CrzO8b3q-0)
+See [scheme in Figma](https://www.figma.com/board/RzTIebuqjBTp3RjnWyckLG/CollectorA?node-id=0-1&node-type=canvas&t=JJLXHee1CrzO8b3q-0).
 
 ## Usage
-To build the project into jar file using Gradle, type on the command line:
-```
-./gradlew build
-```
-To work with the project via docker compose go
-to the [./docker/client](./docker/client) directory.
-The following commands are maintained:
-```
-./create.sh
-./up.sh
-./start.sh
-./login.sh
-./restart.sh
-./stop.sh
-./down.sh
-```
+
+You can start the project using docker compose.
+See docker compose command description: 
+[/docs/Docker.md](./docs/Docker.md). 
+
+To manage the project work see [/docs/Scripts.md](./docs/Scripts.md).
 
 ## Toolchain
 * [Spring Framework](https://spring.io/)
