@@ -4,6 +4,7 @@
 
 ## Program Structure
 See [scheme in Figma](https://www.figma.com/board/RzTIebuqjBTp3RjnWyckLG/CollectorA?node-id=0-1&node-type=canvas&t=JJLXHee1CrzO8b3q-0).
+Or you can see this sceme as png in [/docs/CollectorA.png](./docs/CollectorA.png).
 
 ## Usage
 
