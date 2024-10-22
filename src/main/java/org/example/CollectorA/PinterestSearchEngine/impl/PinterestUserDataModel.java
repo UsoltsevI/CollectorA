@@ -1,4 +1,4 @@
-package org.example.CollectorA.Database;
+package org.example.CollectorA.InstagramSearchEngine;
 
 import java.util.HashMap;
 import org.springframework.stereotype.Component;
@@ -8,6 +8,8 @@ import lombok.Setter;
 import lombok.AccessLevel;
 import lombok.ToString;
 
+import org.example.CollectorA.Database.DataModel;
+
 /**
  * This class describes the model of user data collected and recorded in the DB
  * @author UsoltsevI
@@ -15,7 +17,7 @@ import lombok.ToString;
 @Component
 @Data
 @ToString
-public class UserDataModel implements DataModel {
+public class PinterestUserDataModel implements DataModel {
     private String id;
     private boolean isPrivate;
     private long subscriptionsAmount;

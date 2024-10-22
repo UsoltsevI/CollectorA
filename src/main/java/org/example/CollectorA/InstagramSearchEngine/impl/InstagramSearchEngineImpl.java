@@ -14,7 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.example.CollectorA.Database.DatabaseDispatcher;
-import org.example.CollectorA.Database.UserDataModel;
 
 /**
  * Instagram Search Engine implementstion
@@ -62,7 +61,7 @@ public class InstagramSearchEngineImpl implements InstagramSearchEngine {
         return "Instagram";
     }
 
-    private void saveUserInfo(UserDataModel data) {
+    private void saveUserInfo(InstagramUserDataModel data) {
         if (database.saveData(data)) {
             log.info("user:" + data.toString() + "saved");
         } else {
@@ -70,8 +69,8 @@ public class InstagramSearchEngineImpl implements InstagramSearchEngine {
         }
     }
 
-    private UserDataModel getUserData(InstagramUser user) {
-        UserDataModel data = new UserDataModel();
+    private InstagramUserDataModel getUserData(InstagramUser user) {
+        InstagramUserDataModel data = new InstagramUserDataModel();
         data.setId(Long.toString(user.getPk()));
         data.setPrivate(user.is_private);
         data.setFollowersAmount(Long.valueOf(user.follower_count));

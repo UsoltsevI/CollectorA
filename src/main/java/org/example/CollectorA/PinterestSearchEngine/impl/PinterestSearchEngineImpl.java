@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.example.CollectorA.Database.DatabaseDispatcher;
-import org.example.CollectorA.Database.UserDataModel;
 
 /**
  * This class implements Pinterest Search Engine
@@ -16,22 +15,20 @@ import org.example.CollectorA.Database.UserDataModel;
  */
 @Component
 public class PinterestSearchEngineImpl implements PinterestSearchEngine {
-    private final Logger log = LoggerFactory.getLogger(PinterestSearchEngineImpl.class);
+    private Pinterest pinterest;
     @Autowired
     private DatabaseDispatcher database;
-    private Pinterest pinterest;
+    private final Logger log = LoggerFactory.getLogger(PinterestSearchEngineImpl.class);
 
     @Override
     public void collect(String accessToken) {
         log.info("Collecting started");
-
         if (database.connect(getTableName())) {
             log.info("Connected to the database");
         } else {
             log.info("Connection to the database is failed");
             return;
         }
-
         pinterest = new Pinterest(accessToken);
 
 //        while (true) {
