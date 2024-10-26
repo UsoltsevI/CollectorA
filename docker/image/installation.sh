@@ -4,4 +4,5 @@ apt update && apt install -y \
   vim   \
   curl  \
   wget  \
-  openjdk-21-jdk
+  openjdk-21-jdk \
+  tree

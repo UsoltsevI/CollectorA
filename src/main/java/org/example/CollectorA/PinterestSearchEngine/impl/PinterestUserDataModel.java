@@ -1,4 +1,4 @@
-package org.example.CollectorA.InstagramSearchEngine;
+package org.example.CollectorA.PinterestSearchEngine;
 
 import java.util.HashMap;
 import org.springframework.stereotype.Component;
@@ -19,14 +19,11 @@ import org.example.CollectorA.Database.DataModel;
 @ToString
 public class PinterestUserDataModel implements DataModel {
     private String id;
-    private boolean isPrivate;
     private long subscriptionsAmount;
     private long followersAmount;
     private long averageLikesAmount;
     private long averageCommentsAmount;
-    private long averageRepostAmount;
     private long averagePostSize;
-    private long averagePostingPeriod;
 
     @Override
     public byte[] getId() {
@@ -37,14 +34,11 @@ public class PinterestUserDataModel implements DataModel {
     public HashMap<byte[],byte[]> getFieldsAsBytes() {
         HashMap<byte[],byte[]> map = new HashMap<>();
 
-        map.put(Bytes.toBytes("isPrivate"),            Bytes.toBytes(isPrivate)            );
         map.put(Bytes.toBytes("subscriptionsAmount"),  Bytes.toBytes(subscriptionsAmount)  );
         map.put(Bytes.toBytes("followersAmount"),      Bytes.toBytes(followersAmount)      );
         map.put(Bytes.toBytes("averageLikesAmount"),   Bytes.toBytes(averageLikesAmount)   );
         map.put(Bytes.toBytes("averageCommentsAmount"),Bytes.toBytes(averageCommentsAmount));
-        map.put(Bytes.toBytes("averageRepostAmount"),  Bytes.toBytes(averageRepostAmount)  );
         map.put(Bytes.toBytes("averagePostSize"),      Bytes.toBytes(averagePostSize)      );
-        map.put(Bytes.toBytes("averagePostingPeriod"), Bytes.toBytes(averagePostingPeriod) );
 
         return map;
     }

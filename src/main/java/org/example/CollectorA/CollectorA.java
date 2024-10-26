@@ -34,10 +34,9 @@ public class CollectorA {
 
         String instUsername     = getInstagramUsername();
         String instPassword     = getInstagramPassword();
-        String pintAccessToken  = getPinterestAccessToken();
 
-        executor.submit(() -> instagram.collect(instUsername, instPassword));
-        executor.submit(() -> pinterest.collect(pintAccessToken));
+//        executor.submit(() -> instagram.collect(instUsername, instPassword));
+        executor.submit(() -> pinterest.collect());
 
         executor.shutdown();
     }
@@ -50,10 +49,5 @@ public class CollectorA {
     private static String getInstagramPassword() {
         System.out.println("Instagram password:");
         return new String(System.console().readPassword());
-    }
-
-    private static String getPinterestAccessToken() {
-        System.out.println("PinterestAccessToken:");
-        return new Scanner(System.in).next();
     }
 }

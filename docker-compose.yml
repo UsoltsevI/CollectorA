@@ -4,18 +4,22 @@ services:
   hbase:
     container_name: hbase
     image: mckdev/hbase:nightly
-    hostname: hbase
+    hostname: root
     volumes:
       - ./docker/hbase/hbase-site.xml:/opt/hbase/conf/hbase-site.xml
       - ./docker/hbase-data:/data
     ports:
       - "2181:2181"   # hbase.zookeeper.property.ClientPort
-      - "8085:8080"   # REST API
-      - "9090:9090"   # Thrift API
-      - "16000:16000" # Master API
-      - "16010:16010" # Master UI
-      - "16020:16020" # Regionserver API
-      - "16030:16030" # Regionserver UI
+#      - "8085:8080"   # REST API
+#      - "9090:9090"   # Thrift API
+#      - "16000:16000" # Master API
+#      - "16010:16010" # Master UI
+#      - "16020:16020" # Regionserver API
+#      - "16030:16030" # Regionserver UI
+#      - "60000:60000"
+#      - "60010:60010"
+#      - "60020:60020"
+#      - "60030:60030"
     networks:
       - backend
 
@@ -35,8 +39,14 @@ services:
     networks:
       - backend
     ports:
-      - "80:8080"
       - "443:8080"
+#      - "2181:2181"   # hbase.zookeeper.property.ClientPort
+      - "8085:8080"   # REST API
+#      - "9090:9090"   # Thrift API
+#      - "16000:16000" # Master API
+#      - "16010:16010" # Master UI
+#      - "16020:16020" # Regionserver API
+#      - "16030:16030" # Regionserver UI
     depends_on:
       - hbase
 

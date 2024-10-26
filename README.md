@@ -23,7 +23,8 @@ To manage the project work see [/docs/Scripts.md](./docs/Scripts.md).
   - [HBase (client) javadoc](https://hbase.apache.org/devapidocs/org/apache/hadoop/hbase/client/package-summary.html)
   - [HBase configuration properties](https://docs.ezmeral.hpe.com/datafabric-customer-managed/78/HBase/HBaseConfigurationProperties.html)
 * [Gradle](https://gradle.com/)
-  - [Gradle cources by TomGeorgy](https://tomgregory.com)
+  - [Gradl
+// In this section you declare the dependencies for your production and test codee cources by TomGeorgy](https://tomgregory.com)
 * [HTML parser: Jsoup](https://jsoup.org/)
   - [Jsoup HTML Parser Documentation](https://jsoup.org/apidocs/org/jsoup/Jsoup.html)
 * instagram4j:
