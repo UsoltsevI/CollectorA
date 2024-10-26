@@ -1,6 +1,8 @@
 # CollectorA
 
-[AnalyzerA](https://github.com/UsoltsevI/AnalyzerA)
+Related project: [AnalyzerA](https://github.com/UsoltsevI/AnalyzerA)
+
+The section will be finalized later.
 
 ## Program Structure
 See [scheme in Figma](https://www.figma.com/board/RzTIebuqjBTp3RjnWyckLG/CollectorA?node-id=0-1&node-type=canvas&t=JJLXHee1CrzO8b3q-0).
@@ -13,6 +15,8 @@ See docker compose command description:
 [/docs/Docker.md](./docs/Docker.md). 
 
 To manage the project work see [/docs/Scripts.md](./docs/Scripts.md).
+
+To generate a javadoc use `./scripts/javadoc.sh`
 
 ## Toolchain
 * [Spring Framework](https://spring.io/)

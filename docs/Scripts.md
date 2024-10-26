@@ -13,3 +13,6 @@ Destroys the compiled project (deletes /build directory).
 ### ./run.sh
 Runs the project. Please note that the project works
 only in good conjunction with the database.
+
+### ./javadoc.sh
+Generates a javadoc documentation.

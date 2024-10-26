@@ -11,8 +11,6 @@ repositories {
 }
 
 dependencies {
-    // The production code uses the SLF4J logging API at compile time
-//    compile 'org.slf4j:slf4j-api:1.7.25'
     implementation 'org.springframework.boot:spring-boot:3.3.3'
     implementation 'org.springframework.boot:spring-boot-starter:3.3.3'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:3.3.3'
