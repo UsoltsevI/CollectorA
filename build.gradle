@@ -27,8 +27,10 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok:1.18.34'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
 
+    implementation 'org.graalvm.polyglot:polyglot:24.1.0'
+    implementation 'org.graalvm.polyglot:js:24.1.0'
+
     implementation 'org.jsoup:jsoup:1.18.1'
-    implementation 'net.datafaker:datafaker:2.4.0'
 
     implementation 'org.brunocvcunha.instagram4j:instagram4j:1.14'
 }

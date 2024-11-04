@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import net.datafaker.Faker;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -26,7 +25,6 @@ public class PinterestSearchEngineImpl implements PinterestSearchEngine {
     private final String tableName = "pinterest";
     private final int numberOfPinsToCheck = 10;
     private final Logger log  = LoggerFactory.getLogger(PinterestSearchEngineImpl.class);
-    private Faker faker = new Faker();
     @Autowired
     private DatabaseDispatcher database;
     @Autowired
@@ -77,7 +75,7 @@ public class PinterestSearchEngineImpl implements PinterestSearchEngine {
     }
 
     private String getNextUsername() {
-        return faker.name().username();
+        return "";
     }
 
     private PinterestUserDataModel getUserData(Document page) throws IOException {

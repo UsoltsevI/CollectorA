@@ -14,10 +14,6 @@ public class PinterestPinPageParserImpl implements PinterestPinPageParser {
         this.page = page;
     }
 
-    /**
-     * This method returns a pin (image or video) size in bytes
-     * @return
-     */
     @Override
     public long getPostSize() {
         return 0;
