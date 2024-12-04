@@ -1,5 +1,7 @@
 package org.example.CollectorA.Pinterest;
 
-public interface PinParser {
-    public Pin parse(String url);
+public class PinParser {
+    public static Pin parse(String url) {
+
+    }
 }
