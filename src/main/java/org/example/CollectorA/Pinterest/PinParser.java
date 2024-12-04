@@ -1,5 +1,6 @@
 package org.example.CollectorA.Pinterest;
 
+import java.io.IOException;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import java.lang.IllegalArgumentException;
@@ -12,16 +13,23 @@ import org.jsoup.nodes.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PinParser {
-    private static final Logger LOG = LoggerFactory.getLogger(PinParser.class);
-    private static final Pattern DATA_JSON_REGEX = Pattern.compile("(\\{.*\\})");
+import org.example.CollectorA.Network.PageLoader;
 
-    public static Pin parse(String url) throws IOException,NotSupportedFormatException {
+public class PinParser {
+//    private static final Logger LOG = LoggerFactory.getLogger(PinParser.class);
+    private static final Pattern DATA_JSON_REGEX = Pattern.compile("(\\{.*\\})");
+    private static final String[] contentTypes = { "VideoObject" };
+
+    public static Pin parse(String url) throws IOException, IllegalArgumentException {
         if (!UrlManager.isUrlSupported(url)) {
             throw new IllegalArgumentException("Url not supported");
         }
-        JsonObject entry = parseJsonData(PageLoader.load(url));
-        return new Pin(parseMeta(entry), parseStreamingData(entry));
+//        System.out.println(PageLoader.load(url).toString());
+        JsonObject json = parseJsonData(PageLoader.load(url));
+//
+        System.out.println(json.toString());
+//
+        return new Pin(parseMeta(json), parseStreamingData(json));
     }
 
     private static JsonObject parseJsonData(Document page) throws IllegalArgumentException {
@@ -30,9 +38,14 @@ public class PinParser {
             matcher = DATA_JSON_REGEX.matcher(e.data());
             if (matcher.find()) {
                 try {
-                    JsonObject json = new Gson().fromGson(matcher.group(1), JsonObject.class);
-                    if (json.has("@type") && json.get("@type").getAsString().equals("VideoObject")) {
-                        return object;
+                    JsonObject json = new Gson().fromJson(matcher.group(1), JsonObject.class);
+                    if (json.has("@type")) {
+                        String type = json.get("@type").getAsString();
+                        for (String t : contentTypes) {
+                            if (type.equals(t)) {
+                                return json;
+                            }
+                        }
                     }
                 } catch (JsonSyntaxException ignored) { }
             }

@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
  * @author UsoltsevI
  */
 @Component
-public class HBaseDispatcher implements DatabaseDispatcher {
+public class HBaseDispatcher implements Dispatcher {
     private TableName tableName;
     private Connection connection;
     private Table table;

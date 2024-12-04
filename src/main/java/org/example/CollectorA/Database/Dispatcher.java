@@ -11,7 +11,7 @@ package org.example.CollectorA.Database;
  * when the close() function is called.
  * @author UsoltsevI
  */
-public interface DatabaseDispatcher {
+public interface Dispatcher {
     /**
      * This method opens a new connections with the database and
      * creates a table with tableName. If such table is already exists
