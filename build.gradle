@@ -3,6 +3,8 @@ plugins {
     id "org.springframework.boot" version "3.3.3"
 }
 
+apply plugin: 'io.spring.dependency-management'
+
 group = 'org.example'
 version = '0.0.1'
 
@@ -11,9 +13,9 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot:3.3.3'
-    implementation 'org.springframework.boot:spring-boot-starter:3.3.3'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.3.3'
+    implementation 'org.springframework.boot:spring-boot'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     implementation 'org.apache.hbase:hbase-client:2.2.4'
     implementation 'org.apache.hbase:hbase:2.2.4'
@@ -22,17 +24,12 @@ dependencies {
 
     implementation 'org.slf4j:slf4j-api:2.0.16'
 
-    compileOnly 'org.projectlombok:lombok:1.18.34'
-    annotationProcessor 'org.projectlombok:lombok:1.18.34'
-    testCompileOnly 'org.projectlombok:lombok:1.18.34'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
-
-    implementation 'org.graalvm.polyglot:polyglot:24.1.0'
-    implementation 'org.graalvm.polyglot:js:24.1.0'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
 
     implementation 'org.jsoup:jsoup:1.18.1'
-
-    implementation 'org.brunocvcunha.instagram4j:instagram4j:1.14'
 }
 
 test {
