@@ -1,27 +1,30 @@
 # Collects CollectorA and HBase into containers and combines it
 
 services:
+  namenode:
+    extends:
+      file: ./docker/hbase/docker-compose-standalone.yml
+      service: namenode
+  datanode:
+    extends:
+      file: ./docker/hbase/docker-compose-standalone.yml
+      service: datanode
+  resourcemanager:
+    extends:
+      file: ./docker/hbase/docker-compose-standalone.yml
+      service: resourcemanager
+  nodemanager1:
+    extends:
+      file: ./docker/hbase/docker-compose-standalone.yml
+      service: nodemanager1
+  historyserver:
+    extends:
+      file: ./docker/hbase/docker-compose-standalone.yml
+      service: historyserver
   hbase:
-    container_name: hbase
-    image: mckdev/hbase:nightly
-    hostname: root
-    volumes:
-      - ./docker/hbase/hbase-site.xml:/opt/hbase/conf/hbase-site.xml
-      - ./docker/hbase-data:/data
-    ports:
-      - "2181:2181"   # hbase.zookeeper.property.ClientPort
-#      - "8085:8080"   # REST API
-#      - "9090:9090"   # Thrift API
-#      - "16000:16000" # Master API
-#      - "16010:16010" # Master UI
-#      - "16020:16020" # Regionserver API
-#      - "16030:16030" # Regionserver UI
-#      - "60000:60000"
-#      - "60010:60010"
-#      - "60020:60020"
-#      - "60030:60030"
-    networks:
-      - backend
+    extends:
+      file: ./docker/hbase/docker-compose-standalone.yml
+      service: hbase
 
   collectora:
     container_name: collectora
@@ -36,23 +39,16 @@ services:
       - ./gradlew:${COLLECTORA_DIR}/gradlew
       - ./gradlew.bat:${COLLECTORA_DIR}/gradlew.bat
       - ./settings.gradle:${COLLECTORA_DIR}/settings.gradle
+      - ./build:${COLLECTORA_DIR}/build
     networks:
       - backend
     ports:
       - "443:8080"
-#      - "2181:2181"   # hbase.zookeeper.property.ClientPort
-      - "8085:8080"   # REST API
-#      - "9090:9090"   # Thrift API
-#      - "16000:16000" # Master API
-#      - "16010:16010" # Master UI
-#      - "16020:16020" # Regionserver API
-#      - "16030:16030" # Regionserver UI
+      - "2181:2181"
+      - "8085:8080"
     depends_on:
       - hbase
 
 networks:
   backend:
     driver: bridge
-#    driver_opts:
-#      com.docker.network.bridge.host_binding_ipv4: "127.0.0.1"
-#    attachable: true

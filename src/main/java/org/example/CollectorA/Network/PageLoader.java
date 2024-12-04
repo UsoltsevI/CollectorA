@@ -5,8 +5,8 @@ import java.io.IOException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-public interface PageLoader {
-    public Document load(String url) throws IOException {
+public class PageLoader {
+    public static Document load(String url) throws IOException {
         return Jsoup.connect(url).followRedirects(true).get();
     }
 }

@@ -8,6 +8,5 @@ import lombok.AllArgsConstructor;
 public class PinMeta {
     private final String name;
     private final String description;
-    private final String creator;
     private final String url;
 }
