@@ -1,10 +1,10 @@
 package org.example.CollectorA.Pinterest;
 
 import lombok.Getter;
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 @Getter
-@AllArgsConstructor
+@Builder
 public class Pinner {
     private final String id;
     private final String entityId;

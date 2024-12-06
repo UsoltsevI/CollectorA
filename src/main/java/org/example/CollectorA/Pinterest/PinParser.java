@@ -29,16 +29,15 @@ public class PinParser {
         }
 
         Document page = PageLoader.load(url);
+        JsonObject data = parseResponseData(parseDetailData(page));
 
-        JsonObject data  = parseResponseData(parseDetailData(page));
-
-        PinMeta meta = parseMeta(data);
-        Board board = parseBoard(data.getAsJsonObject("board"));
-        Pinner origin = parsePinner(data.getAsJsonObject("originPinner"));
-        Pinner pinner = parsePinner(data.getAsJsonObject("pinner"));
-        StreamingData streamingData = parseStreamingData(data.getAsJsonObject("imageSpec_orig"));
-
-        return new Pin(meta, board, origin, pinner, streamingData);
+        return Pin.builder()
+                .meta(parseMeta(data))
+                .board(parseBoard(data.getAsJsonObject("board")))
+                .origin(parsePinner(data.getAsJsonObject("originPinner")))
+                .pinner(parsePinner(data.getAsJsonObject("pinner")))
+                .streamingData(parseStreamingData(data.getAsJsonObject("imageSpec_orig")))
+                .build();
     }
 
     private static JsonObject parseResponseData(JsonObject json) {
@@ -62,7 +61,7 @@ public class PinParser {
 
     private static JsonObject parseVideoData(Document page) throws IllegalArgumentException {
         return parseData(page, (json) -> {
-                if (json.has("@type") && json.get("@type").getAsString().equals("VideoObject")) {
+                if (json.has("@type") && "VideoObject".equals(json.get("@type").getAsString())) {
                     return true;
                 }
                 return false;
@@ -71,9 +70,8 @@ public class PinParser {
 
     private static JsonObject parseData(Document page, Predicate<JsonObject> isRequired)
                 throws IllegalArgumentException {
-        Matcher matcher;
         for (Element e : page.select("script")) {
-            matcher = DATA_JSON_REGEX.matcher(e.data());
+            Matcher matcher = DATA_JSON_REGEX.matcher(e.data());
             if (matcher.find()) {
                 try {
                     JsonObject json = new Gson().fromJson(matcher.group(1), JsonObject.class);
@@ -87,42 +85,45 @@ public class PinParser {
     }
 
     private static PinMeta parseMeta(JsonObject data) {
-        String createdAt = data.get("createdAt").getAsString();
-        String description = data.get("description").getAsString();
-        String seoDescription = data.get("seoDescription").getAsString();
-        int favoriteUserCount = data.get("favoriteUserCount").getAsInt();
-        int repinCount = data.get("repinCount").getAsInt();
-        int shareCount = data.get("shareCount").getAsInt();
-        int totalReactionCount = data.get("totalReactionCount").getAsInt();
-        return new PinMeta(createdAt, description, seoDescription
-                , favoriteUserCount, repinCount, shareCount, totalReactionCount);
+        return PinMeta.builder()
+                .createdAt(data.get("createdAt").getAsString())
+                .description(data.get("description").getAsString())
+                .seoDescription(data.get("seoDescription").getAsString())
+                .favoriteUserCount(data.get("favoriteUserCount").getAsInt())
+                .repinCount(data.get("repinCount").getAsInt())
+                .shareCount(data.get("shareCount").getAsInt())
+                .totalReactionCount(data.get("totalReactionCount").getAsInt())
+                .build();
     }
 
     private static Board parseBoard(JsonObject board) {
-        String id   = board.get("id").getAsString();
-        String url  = board.get("url").getAsString();
-        String name = board.get("name").getAsString();
-        String privacy = board.get("public").getAsString();
-        JsonObject owner     = board.getAsJsonObject("owner");
-        String ownerId       = owner.get("id").getAsString();
-        String ownerEntityId = owner.get("entityId").getAsString();
-        boolean isCollaborative = board.get("isCollaborative").getAsBoolean();
-        return new Board(id, url, name, privacy, ownerId, ownerEntityId, isCollaborative);
+        JsonObject owner = board.getAsJsonObject("owner");
+        return Board.builder()
+                .id(board.get("id").getAsString())
+                .url(board.get("url").getAsString())
+                .name(board.get("name").getAsString())
+                .privacy(board.get("public").getAsString())
+                .ownerId(owner.get("id").getAsString())
+                .ownerEntityId(owner.get("entityId").getAsString())
+                .isCollaborative(board.get("isCollaborative").getAsBoolean())
+                .build();
     }
 
     private static Pinner parsePinner(JsonObject pinner) {
-        String id       = pinner.get("id").getAsString();
-        String entityId = pinner.get("entityId").getAsString();
-        String fullName = pinner.get("fullName").getAsString();
-        String username = pinner.get("username").getAsString();
-        int followerCount = pinner.get("followerCount").getAsInt();
-        return new Pinner(id, entityId, fullName, username, followerCount);
+        return Pinner.builder()
+                .id(pinner.get("id").getAsString())
+                .entityId(pinner.get("entityId").getAsString())
+                .fullName(pinner.get("fullName").getAsString())
+                .username(pinner.get("username").getAsString())
+                .followerCount(pinner.get("followerCount").getAsInt())
+                .build();
     }
 
     private static StreamingData parseStreamingData(JsonObject imageSpec) {
-        int width = imageSpec.get("width").getAsInt();
-        int heigh = imageSpec.get("heigh").getAsInt();
-        String url = imageSpec.get("url").getAsString();
-        return new StreamingData(width, heigh, url);
+        return StreamingData.builder()
+                .width(imageSpec.get("width").getAsInt())
+                .height(imageSpec.get("height").getAsInt())
+                .url(imageSpec.get("url").getAsString())
+                .build();
     }
 }

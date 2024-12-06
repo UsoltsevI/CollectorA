@@ -1,10 +1,10 @@
 package org.example.CollectorA.Pinterest;
 
 import lombok.Getter;
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 @Getter
-@AllArgsConstructor
+@Builder
 public class PinMeta {
     private final String createdAt;
     private final String description;
