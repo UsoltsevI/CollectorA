@@ -1,0 +1,210 @@
+{
+  "requestParameters": {
+    "id": "e45c5586aca21eeb8bef10014557504531659f0794b1779aaca72d772fc83e44",
+    "metadata": {},
+    "name": "CloseupPageQuery",
+    "operationKind": "query",
+    "text": null
+  },
+  "variables": {
+    "pinId": "635640934940256125",
+    "isAuth": false
+  },
+  "response": {
+    "data": {
+      "v3GetPinQuery": {
+        "__typename": "V3GetPin",
+        "data": {
+          "description": " ",
+          "dominantColor": "#18171b",
+          "embed": null,
+          "gridDescription": " ",
+          "gridTitle": "Free Starry Night Sky Image | Download at StockCake",
+          "imageSpec_236x": {
+            "dominantColor": null,
+            "height": 421,
+            "type": null,
+            "url": "https://i.pinimg.com/236x/1e/05/09/1e05096588b5d0431a1dfe05e5e5bd21.jpg",
+            "width": 236
+          },
+          "imageSignature": "1e05096588b5d0431a1dfe05e5e5bd21",
+          "isEligibleForPdp": false,
+          "richSummary": {
+            "typeName": "classifier data",
+            "displayName": ""
+          },
+          "storyPinDataId": null,
+          "videos": null,
+          "board": {
+            "collaboratedByMe": false,
+            "collaboratorPermissions": null,
+            "entityId": "635641003597457725",
+            "isCollaborative": false,
+            "owner": {
+              "entityId": "635641072315343204",
+              "id": "VXNlcjo2MzU2NDEwNzIzMTUzNDMyMDQ="
+            },
+            "url": "/HaeDalbit81/f/",
+            "id": "Qm9hcmQ6NjM1NjQxMDAzNTk3NDU3NzI1",
+            "followedByMe": false
+          },
+          "closeupAttribution": {
+            "fullName": "StockCake",
+            "id": "VXNlcjoxMTQyNDM2NzY3ODgzMDA3OTg4"
+          },
+          "createdAt": "Thu, 19 Sep 2024 19:41:32 +0000",
+          "domain": "stockcake.com",
+          "images": {
+            "url": "https://i.pinimg.com/originals/1e/05/09/1e05096588b5d0431a1dfe05e5e5bd21.jpg"
+          },
+          "isDownstreamPromotion": false,
+          "isEligibleForAggregatedComments": true,
+          "isGoLinkless": false,
+          "isPromoted": false,
+          "isV1IdeaPin": null,
+          "pinJoin": {
+            "seoBreadcrumbs": [
+              {
+                "name": "Искусство",
+                "url": "/ideas/искусство/933065609551/"
+              },
+              {
+                "name": "Фотография",
+                "url": "/ideas/фотография/934089945178/"
+              }
+            ],
+            "visualAnnotation": [
+              "Млечный Путь",
+              "Галактики",
+              "Вселенная",
+              "Космос",
+              "Фоновые Рисунки",
+              "Эскиз",
+              "Обои",
+              "Рисунки"
+            ]
+          },
+          "link": "https://stockcake.com/i/starry-night-sky_492156_1037774",
+          "linkDomain": {
+            "name": "stockcake.com",
+            "officialUser": {
+              "__typename": "User",
+              "id": "VXNlcjoxMTQyNDM2NzY3ODgzMDA3OTg4",
+              "imageMediumUrl": "https://i.pinimg.com/75x75_RS/5f/b5/5a/5fb55ad8b6d49ed4a83b54809c6ef000.jpg",
+              "username": "StockCake"
+            },
+            "id": "RG9tYWluOjEwMDcwNDc0NDE1MjM5Mzc0MzY="
+          },
+          "linkUserWebsite": null,
+          "mobileLink": null,
+          "nativeCreator": null,
+          "pinnedToBoard": null,
+          "pinner": {
+            "domainUrl": null,
+            "domainVerified": false,
+            "entityId": "635641072315343204",
+            "id": "VXNlcjo2MzU2NDEwNzIzMTUzNDMyMDQ=",
+            "connectionType": "Cable/DSL",
+            "username": "HaeDalbit81",
+            "explicitlyFollowedByMe": false,
+            "blockedByMe": false
+          },
+          "promoter": null,
+          "promotedIsRemovable": false,
+          "recommendationReason": null,
+          "richMetadata": {
+            "__typename": "RichPinDataView",
+            "article": null,
+            "products": null,
+            "recipe": null,
+            "tutorial": null,
+            "description": "Download 'Starry Night Sky' - A mesmerizing view of the vast cosmos, showing the beauty of a star-filled galactic expanse. - Get this free stock photo and more high-quality images on StockCake. No attribution required.",
+            "title": "Free Starry Night Sky Image | Download at StockCake"
+          },
+          "section": null,
+          "shouldOpenInStream": false,
+          "storyPinData": null,
+          "thirdPartyPinOwner": null,
+          "trackedLink": "https://stockcake.com/i/starry-night-sky_492156_1037774",
+          "trackingParams": "CwABAAAAEDkxMTE4OTUxNDUxNTI3MjcLAAcAAAAPdW5rbm93bi91bmtub3duAA",
+          "imageSpec_orig": {
+            "__typename": "ImageDetails",
+            "url": "https://i.pinimg.com/originals/1e/05/09/1e05096588b5d0431a1dfe05e5e5bd21.jpg"
+          },
+          "imageLargeUrl": "https://i.pinimg.com/1200x/1e/05/09/1e05096588b5d0431a1dfe05e5e5bd21.jpg",
+          "descriptionHtml": " ",
+          "altText": null,
+          "autoAltText": "an image of the night sky with many stars and bright lights on it's side",
+          "isHidden": false,
+          "isUnsafe": false,
+          "imageSpec_136x136": {
+            "height": 136,
+            "width": 136,
+            "url": "https://i.pinimg.com/136x136/1e/05/09/1e05096588b5d0431a1dfe05e5e5bd21.jpg"
+          },
+          "shuffle": null,
+          "imageSpec_60x60": {
+            "url": "https://i.pinimg.com/60x60/1e/05/09/1e05096588b5d0431a1dfe05e5e5bd21.jpg"
+          },
+          "imageSpec_170x": {
+            "url": "https://i.pinimg.com/236x/1e/05/09/1e05096588b5d0431a1dfe05e5e5bd21.jpg"
+          },
+          "imageSpec_474x": {
+            "url": "https://i.pinimg.com/474x/1e/05/09/1e05096588b5d0431a1dfe05e5e5bd21.jpg"
+          },
+          "imageSpec_564x": {
+            "url": "https://i.pinimg.com/564x/1e/05/09/1e05096588b5d0431a1dfe05e5e5bd21.jpg"
+          },
+          "imageSpec_736x": {
+            "url": "https://i.pinimg.com/736x/1e/05/09/1e05096588b5d0431a1dfe05e5e5bd21.jpg"
+          },
+          "imageSpec_600x315": {
+            "url": "https://i.pinimg.com/600x315/1e/05/09/1e05096588b5d0431a1dfe05e5e5bd21.jpg"
+          },
+          "digitalMediaSourceType": null,
+          "visualObjects": [
+            {
+              "isStela": true,
+              "h": 1,
+              "w": 1,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "category": "",
+          "closeupDescription": null,
+          "closeupUnifiedDescription": "Download 'Starry Night Sky' - A mesmerizing view of the vast cosmos, showing the beauty of a star-filled galactic expanse. - Get this free stock photo and more high-quality images on StockCake. No attribution required.",
+          "entityId": "635640934940256125",
+          "title": "",
+          "shouldMute": false,
+          "musicAttributions": [],
+          "isOosProduct": false,
+          "isStaleProduct": false,
+          "shoppingFlags": [],
+          "originPinner": {
+            "entityId": "877991027263375022",
+            "id": "VXNlcjo4Nzc5OTEwMjcyNjMzNzUwMjI=",
+            "username": "kinzazameer151"
+          },
+          "aggregatedPinData": {
+            "aggregatedStats": {
+              "saves": 2998
+            },
+            "id": "QWdncmVnYXRlZFBpbkRhdGE6NTM1MjE4MDM1MjU0NDcyNTY5Nw=="
+          },
+          "imageSpec_236": {
+            "url": "https://i.pinimg.com/236x/1e/05/09/1e05096588b5d0431a1dfe05e5e5bd21.jpg"
+          },
+          "imageSpec_474": {
+            "url": "https://i.pinimg.com/474x/1e/05/09/1e05096588b5d0431a1dfe05e5e5bd21.jpg"
+          },
+          "imageSpec_736": {
+            "url": "https://i.pinimg.com/736x/1e/05/09/1e05096588b5d0431a1dfe05e5e5bd21.jpg"
+          },
+          "mediaAttribution": null,
+          "id": "UGluOjYzNTY0MDkzNDk0MDI1NjEyNQ=="
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,416 @@
+{
+  "requestParameters": {
+    "id": "b6d55a533ded01fce58edb5206c3909ddcf1dc1ed787297667b170e7fc784616",
+    "metadata": {},
+    "name": "CloseupStoryPinQuery",
+    "operationKind": "query",
+    "text": null
+  },
+  "variables": {
+    "pinId": "52213676923889828",
+    "isDesktop": true
+  },
+  "response": {
+    "data": {
+      "v3GetPinQuery": {
+        "__typename": "V3GetPin",
+        "data": {
+          "storyPinData": {
+            "pages": [
+              {
+                "pageId": "2605118047",
+                "storyPageId": "2605118047",
+                "blocks": [
+                  {
+                    "__typename": "StoryPinVideoBlock",
+                    "blockType": 3,
+                    "blockStyle": {
+                      "height": 100,
+                      "width": 100,
+                      "xCoord": 0,
+                      "yCoord": 0
+                    },
+                    "videoData": {
+                      "videoList": {
+                        "vHLSV3MOBILE": {
+                          "duration": 10866,
+                          "height": 1280,
+                          "thumbnail": "https://i.pinimg.com/videos/thumbnails/originals/26/e2/fa/26e2fa46874c0e6caf8545073902e07d.0000000.jpg",
+                          "url": "https://v1.pinimg.com/videos/iht/hls/26/e2/fa/26e2fa46874c0e6caf8545073902e07d.m3u8",
+                          "width": 720,
+                          "captionsUrls": null
+                        }
+                      },
+                      "seoViewCount": "9172",
+                      "videoListMobile": {
+                        "vHLSV3MOBILE": {
+                          "thumbnail": "https://i.pinimg.com/videos/thumbnails/originals/26/e2/fa/26e2fa46874c0e6caf8545073902e07d.0000000.jpg",
+                          "url": "https://v1.pinimg.com/videos/iht/hls/26/e2/fa/26e2fa46874c0e6caf8545073902e07d.m3u8",
+                          "width": 720,
+                          "height": 1280,
+                          "duration": 10866,
+                          "captionsUrls": null
+                        }
+                      },
+                      "videoListEXP3": {
+                        "vEXP3": {
+                          "thumbnail": "https://i.pinimg.com/videos/thumbnails/originals/26/e2/fa/26e2fa46874c0e6caf8545073902e07d.0000000.jpg",
+                          "url": "https://v1.pinimg.com/videos/mc/expMp4/26/e2/fa/26e2fa46874c0e6caf8545073902e07d_t1.mp4",
+                          "width": 720,
+                          "height": 1280,
+                          "duration": 10866,
+                          "captionsUrls": null
+                        }
+                      },
+                      "videoListEXP4": {
+                        "vEXP4": {
+                          "thumbnail": "https://i.pinimg.com/videos/thumbnails/originals/26/e2/fa/26e2fa46874c0e6caf8545073902e07d.0000000.jpg",
+                          "url": "https://v1.pinimg.com/videos/mc/expMp4/26/e2/fa/26e2fa46874c0e6caf8545073902e07d_t2.mp4",
+                          "width": 720,
+                          "height": 1280,
+                          "duration": 10866,
+                          "captionsUrls": null
+                        }
+                      },
+                      "videoListEXP5": {
+                        "vEXP5": {
+                          "thumbnail": "https://i.pinimg.com/videos/thumbnails/originals/26/e2/fa/26e2fa46874c0e6caf8545073902e07d.0000000.jpg",
+                          "url": "https://v1.pinimg.com/videos/mc/expMp4/26/e2/fa/26e2fa46874c0e6caf8545073902e07d_t3.mp4",
+                          "width": 720,
+                          "height": 1280,
+                          "duration": 10866,
+                          "captionsUrls": null
+                        }
+                      },
+                      "videoListEXP6": {
+                        "vEXP6": {
+                          "thumbnail": "https://i.pinimg.com/videos/thumbnails/originals/26/e2/fa/26e2fa46874c0e6caf8545073902e07d.0000000.jpg",
+                          "url": "https://v1.pinimg.com/videos/mc/expMp4/26/e2/fa/26e2fa46874c0e6caf8545073902e07d_t4.mp4",
+                          "width": 720,
+                          "height": 1280,
+                          "duration": 10866,
+                          "captionsUrls": null
+                        }
+                      },
+                      "videoListEXP7": {
+                        "vEXP7": {
+                          "thumbnail": "https://i.pinimg.com/videos/thumbnails/originals/26/e2/fa/26e2fa46874c0e6caf8545073902e07d.0000000.jpg",
+                          "url": "https://v1.pinimg.com/videos/mc/720p/26/e2/fa/26e2fa46874c0e6caf8545073902e07d.mp4",
+                          "width": 720,
+                          "height": 1280,
+                          "duration": 10866,
+                          "captionsUrls": null
+                        }
+                      },
+                      "videoList720P": {
+                        "v720P": {
+                          "thumbnail": "https://i.pinimg.com/videos/thumbnails/originals/26/e2/fa/26e2fa46874c0e6caf8545073902e07d.0000000.jpg",
+                          "url": "https://v1.pinimg.com/videos/mc/720p/26/e2/fa/26e2fa46874c0e6caf8545073902e07d.mp4",
+                          "width": 720,
+                          "height": 1280,
+                          "duration": 10866,
+                          "captionsUrls": null
+                        }
+                      }
+                    },
+                    "text": "",
+                    "video": {
+                      "videoList": {
+                        "v720P": {
+                          "duration": 10866
+                        },
+                        "vHLSV3MOBILE": {
+                          "duration": 10866,
+                          "captionsUrls": null
+                        }
+                      },
+                      "__typename": "StoryPinVideoMetadata"
+                    }
+                  }
+                ],
+                "layout": 0,
+                "ad": null,
+                "musicBlocks": [
+                  {
+                    "__typename": "StoryPinVideoBlock"
+                  }
+                ],
+                "videoBlocks": [
+                  {
+                    "__typename": "StoryPinVideoBlock",
+                    "blockType": 3,
+                    "video": {
+                      "videoList": {
+                        "vHLSV3MOBILE": {
+                          "duration": 10866,
+                          "captionsUrls": null
+                        }
+                      }
+                    }
+                  }
+                ],
+                "dominantColor": "#01082c",
+                "dominantColorAdjusted": "#01082c",
+                "imageSpec_750x": {
+                  "height": 1280,
+                  "url": "https://i.pinimg.com/736x/51/03/60/510360b792ef90ceb331ddf9b58bf47a.jpg",
+                  "width": 720
+                },
+                "imageSpec_236x": {
+                  "height": 419,
+                  "url": "https://i.pinimg.com/236x/51/03/60/510360b792ef90ceb331ddf9b58bf47a.jpg",
+                  "width": 236
+                },
+                "imageSpec_1200x": {
+                  "height": 1280,
+                  "url": "https://i.pinimg.com/1200x/51/03/60/510360b792ef90ceb331ddf9b58bf47a.jpg",
+                  "width": 720
+                },
+                "imageSpec_orig": null,
+                "imageAdjustedSpec_750x": {
+                  "height": 1280,
+                  "url": "https://i.pinimg.com/736x/51/03/60/510360b792ef90ceb331ddf9b58bf47a.jpg",
+                  "width": 720
+                },
+                "imageAdjustedSpec_236x": {
+                  "height": 419,
+                  "url": "https://i.pinimg.com/236x/51/03/60/510360b792ef90ceb331ddf9b58bf47a.jpg",
+                  "width": 236
+                },
+                "imageAdjustedSpec_1200x": {
+                  "height": 1280,
+                  "url": "https://i.pinimg.com/1200x/51/03/60/510360b792ef90ceb331ddf9b58bf47a.jpg",
+                  "width": 720
+                },
+                "imageAdjustedSpec_orig": null,
+                "shouldMute": false,
+                "imageSignatureAdjusted": "510360b792ef90ceb331ddf9b58bf47a",
+                "style": {
+                  "backgroundColor": "#293073"
+                },
+                "video": {
+                  "videoList": null
+                },
+                "musicAttributions": []
+              }
+            ],
+            "id": "U3RvcnlQaW5EYXRhOjUzNTkxODU2MjI1NDg0MDcwMTU=",
+            "hasProductPins": false,
+            "metadata": {
+              "canvasAspectRatio": 0.5625,
+              "recipeData": null,
+              "templateType": null,
+              "version": "0.9.0",
+              "basics": null
+            },
+            "hasAffiliateProducts": false,
+            "entityId": "5359185622548407015"
+          },
+          "entityId": "52213676923889828",
+          "imageSpec_736x": {
+            "url": "https://i.pinimg.com/736x/f4/39/e2/f439e29ae717506529777e53dbc788e9.jpg"
+          },
+          "gridTitle": "",
+          "description": " ",
+          "richSummary": null,
+          "nativeCreator": {
+            "firstName": "❁ 𖦹 𝔹𝕠♡ℤ𝔼ℕ♡𝕒 𖦹 ❁",
+            "fullName": "❁ 𖦹 𝔹𝕠♡ℤ𝔼ℕ♡𝕒 𖦹 ❁",
+            "username": "999bbozenaau",
+            "id": "VXNlcjo3ODQ0NzA5NjYyNTEwOTUwNTQ=",
+            "adsOnlyProfileSite": null,
+            "blockedByMe": false,
+            "entityId": "784470966251095054",
+            "explicitlyFollowedByMe": false,
+            "imageLargeUrl": "https://i.pinimg.com/140x140_RS/82/b2/3b/82b23b13b52c15cb4b6f47e5aa951518.jpg",
+            "imageMediumUrl": "https://i.pinimg.com/75x75_RS/82/b2/3b/82b23b13b52c15cb4b6f47e5aa951518.jpg",
+            "imageSmallUrl": "https://i.pinimg.com/30x30_RS/82/b2/3b/82b23b13b52c15cb4b6f47e5aa951518.jpg",
+            "isAdsOnlyProfile": false,
+            "verifiedIdentity": {
+              "verified": null
+            },
+            "followerCount": 7550,
+            "isVerifiedMerchant": false
+          },
+          "imageSpec_236x": {
+            "url": "https://i.pinimg.com/236x/f4/39/e2/f439e29ae717506529777e53dbc788e9.jpg"
+          },
+          "aggregatedPinData": {
+            "entityId": "5359185622816834625",
+            "id": "QWdncmVnYXRlZFBpbkRhdGE6NTM1OTE4NTYyMjgxNjgzNDYyNQ==",
+            "aggregatedStats": {
+              "saves": 172
+            },
+            "commentCount": 0,
+            "didItData": {
+              "imagesCount": 0
+            }
+          },
+          "dominantColor": "#01082c",
+          "imageSignature": "f439e29ae717506529777e53dbc788e9",
+          "pinner": {
+            "adsOnlyProfileSite": null,
+            "blockedByMe": false,
+            "entityId": "52213814338276989",
+            "explicitlyFollowedByMe": false,
+            "fullName": "Aleksei Tikhonov",
+            "imageLargeUrl": "https://s.pinimg.com/images/user/default_140.png",
+            "imageMediumUrl": "https://s.pinimg.com/images/user/default_75.png",
+            "imageSmallUrl": "https://s.pinimg.com/images/user/default_30.png",
+            "isAdsOnlyProfile": false,
+            "username": "to_alexei",
+            "verifiedIdentity": {
+              "verified": null
+            },
+            "id": "VXNlcjo1MjIxMzgxNDMzODI3Njk4OQ=="
+          },
+          "sponsorship": null,
+          "storyPinDataId": "5359185622548407015",
+          "title": "",
+          "reactionCountsData": [
+            {
+              "reactionType": 1,
+              "reactionCount": 27
+            },
+            {
+              "reactionType": 11,
+              "reactionCount": 1
+            }
+          ],
+          "domain": "Uploaded by user",
+          "link": null,
+          "closeupUnifiedDescription": " ",
+          "closeupAttribution": {
+            "entityId": "784470966251095054",
+            "imageMediumUrl": "https://i.pinimg.com/75x75_RS/82/b2/3b/82b23b13b52c15cb4b6f47e5aa951518.jpg",
+            "followerCount": 7550,
+            "followedByMe": false,
+            "username": "999bbozenaau",
+            "isAdsOnlyProfile": false,
+            "adsOnlyProfileSite": null,
+            "verifiedIdentity": {
+              "verified": null
+            },
+            "isVerifiedMerchant": false,
+            "id": "VXNlcjo3ODQ0NzA5NjYyNTEwOTUwNTQ=",
+            "fullName": "❁ 𖦹 𝔹𝕠♡ℤ𝔼ℕ♡𝕒 𖦹 ❁"
+          },
+          "linkDomain": null,
+          "originPinner": {
+            "username": "999bbozenaau",
+            "imageMediumUrl": "https://i.pinimg.com/75x75_RS/82/b2/3b/82b23b13b52c15cb4b6f47e5aa951518.jpg",
+            "id": "VXNlcjo3ODQ0NzA5NjYyNTEwOTUwNTQ="
+          },
+          "mobileLink": null,
+          "trackingParams": "CwABAAAAEDQ3OTg4Mzc2MjY1OTE3ODYLAAcAAAAPdW5rbm93bi91bmtub3duAA",
+          "trackedLink": null,
+          "isDownstreamPromotion": false,
+          "category": "art",
+          "isPromoted": false,
+          "promoter": null,
+          "embed": null,
+          "imageSpec_60x60": {
+            "url": "https://i.pinimg.com/60x60/f4/39/e2/f439e29ae717506529777e53dbc788e9.jpg"
+          },
+          "imageSpec_136x136": {
+            "url": "https://i.pinimg.com/136x136/f4/39/e2/f439e29ae717506529777e53dbc788e9.jpg"
+          },
+          "imageSpec_170x": {
+            "url": "https://i.pinimg.com/236x/f4/39/e2/f439e29ae717506529777e53dbc788e9.jpg"
+          },
+          "imageSpec_474x": {
+            "url": "https://i.pinimg.com/474x/f4/39/e2/f439e29ae717506529777e53dbc788e9.jpg"
+          },
+          "imageSpec_564x": {
+            "url": "https://i.pinimg.com/564x/f4/39/e2/f439e29ae717506529777e53dbc788e9.jpg"
+          },
+          "imageSpec_600x315": {
+            "url": "https://i.pinimg.com/600x315/f4/39/e2/f439e29ae717506529777e53dbc788e9.jpg"
+          },
+          "imageSpec_orig": {
+            "url": "https://i.pinimg.com/originals/f4/39/e2/f439e29ae717506529777e53dbc788e9.jpg"
+          },
+          "isEligibleForPdp": false,
+          "isOosProduct": false,
+          "isStaleProduct": false,
+          "shoppingFlags": [],
+          "musicAttributions": [],
+          "shouldMute": false,
+          "richMetadata": null,
+          "board": {
+            "name": "Космическая станция КС",
+            "url": "/to_alexei/%D0%BA%D0%BE%D1%81%D0%BC%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F-%D1%81%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D1%8F-%D0%BA%D1%81/",
+            "id": "Qm9hcmQ6NTIyMTM3NDU2MTkyNDk0NzA="
+          },
+          "commentsDisabled": false,
+          "createdAt": "Fri, 15 Nov 2024 12:16:20 +0000",
+          "isEligibleForAggregatedComments": true,
+          "relatedArticle": {
+            "entityId": null,
+            "_id": null,
+            "mainImageUrl": null,
+            "title": null,
+            "urlPath": null
+          },
+          "closeupUserNote": " ",
+          "method": "photos",
+          "affiliateLink": null,
+          "pinJoin": {
+            "visualAnnotation": [
+              "Космическая Станция",
+              "Анимационный Дизайн",
+              "Звёзды",
+              "Обои Для Мобильных Телефонов",
+              "Вау",
+              "Вселенная",
+              "Космос",
+              "Звезды",
+              "Фоновые Рисунки"
+            ],
+            "annotationsWithLinksArray": [
+              {
+                "name": "Космическая Станция",
+                "url": "/ideas/космическая-станция/894855650548/"
+              },
+              {
+                "name": "Анимационный Дизайн",
+                "url": "/ideas/анимационный-дизайн/946669518746/"
+              },
+              {
+                "name": "Звёзды",
+                "url": "/ideas/звёзды/901078412944/"
+              },
+              {
+                "name": "Обои Для Мобильных Телефонов",
+                "url": "/ideas/обои-для-мобильных-телефонов/956497346613/"
+              },
+              {
+                "name": "Вау",
+                "url": "/ideas/вау/960015327930/"
+              },
+              {
+                "name": "Вселенная",
+                "url": "/ideas/вселенная/948151730091/"
+              },
+              {
+                "name": "Космос",
+                "url": "/ideas/космос/897752362110/"
+              },
+              {
+                "name": "Звезды",
+                "url": "/ideas/звезды/952878885270/"
+              },
+              {
+                "name": "Фоновые Рисунки",
+                "url": "/ideas/фоновые-рисунки/909365107810/"
+              }
+            ]
+          },
+          "doneByMe": false,
+          "videos": null,
+          "id": "UGluOjUyMjEzNjc2OTIzODg5ODI4"
+        }
+      }
+    }
+  }
+}
