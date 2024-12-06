@@ -7,5 +7,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class Pin {
     private final PinMeta meta;
+    private final Board board;
+    private final Pinner origin;
+    private final Pinner pinner;
     private final StreamingData streamingData;
 }
