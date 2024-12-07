@@ -2,7 +2,7 @@
 # build CollectorA
 ###
 FROM ubuntu:22.04
-WORKDIR /CollectorA
+WORKDIR /root
 
 COPY ./installation.sh ./installation.sh
 

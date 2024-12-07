@@ -23,6 +23,7 @@ services:
       - ./gradlew:${COLLECTORA_DIR}/gradlew
       - ./gradlew.bat:${COLLECTORA_DIR}/gradlew.bat
       - ./settings.gradle:${COLLECTORA_DIR}/settings.gradle
+      - ./.gradle:${COLLECTORA_DIR}/.gradle
       - ./build:${COLLECTORA_DIR}/build
     networks:
       - backend

@@ -6,20 +6,14 @@ pull_images() {
   echo "Pulling is finished"
 }
 
-build_collectora() {
+build_containers() {
   BASEDIR=$(dirname "$0")
   cd $BASEDIR
   echo "Building CollectorA image..."
   docker compose -f ../../docker-compose.yml build collectora
-}
-
-build_hbase() {
-    BASEDIR=$(dirname "$0")
-    cd $BASEDIR
-    echo "Building HBase image..."
-    docker compose -f ../../docker-compose.yml build hbase
+  echo "Building HBase image..."
+  docker compose -f ../../docker-compose.yml build hbase
 }
 
 pull_images
-build_collectora
-build_hbase
+build_containers
