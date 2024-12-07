@@ -1,14 +1,15 @@
 # Collects CollectorA and HBase into containers and combines it
 
 services:
-  habse:
+  hbase:
     container_name: hbase
     build: ./docker/hbase
-    command: /bin/bash -c start-hbase.sh hbase shell
+    command: bash -c "start-hbase.sh; hbase shell"
     networks:
       - backend
     ports:
       - "80:8080"
+
   collectora:
     container_name: collectora
     build: ./docker/image
@@ -26,9 +27,8 @@ services:
     networks:
       - backend
     ports:
-      - "443:8080"
+      - "8081:8080"
       - "2181:2181"
-      - "8085:8080"
     depends_on:
       - hbase
 

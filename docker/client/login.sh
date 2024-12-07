@@ -2,4 +2,10 @@
 
 USER="root"
 
-docker exec -it --user "$USER" "collectora" /bin/bash
+service=$1
+
+if [[ -z $service ]]; then
+  service="collectora"
+fi
+
+docker exec -it --user "$USER" "$service" /bin/bash

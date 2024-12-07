@@ -9,5 +9,3 @@ COPY ./installation.sh ./installation.sh
 RUN chmod +x installation.sh
 RUN ./installation.sh
 RUN rm ./installation.sh
-
-EXPOSE 8080
