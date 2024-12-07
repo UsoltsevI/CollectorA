@@ -41,7 +41,7 @@ ENV MAVEN_HOME /usr/local/apache-maven
 RUN git clone https://github.com/apache/hbase
 RUN mvn -T 4 clean install -DskipTests assembly:single -f ./hbase/pom.xml
 
-# Set HBASE_HOME, add it to the path with path to maven and Java
+# Set HBASE_HOME, add it to the path along with path to Maven and Java
 ENV HBASE_HOME /root/hbase
 ENV PATH /root/hbase/bin:/usr/java/bin:/usr/local/apache-maven/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 

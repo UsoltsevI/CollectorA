@@ -2,21 +2,43 @@
 
 Related project: [AnalyzerA](https://github.com/UsoltsevI/AnalyzerA)
 
-The section will be finalized later.
+This project was created in order to collect some 
+information about well-known platforms.
+Note that it collects only publicly available data.
 
-## Program Structure
+The information collected can be used to estimate the following: 
+* the amount of space occupied by one user
+* the amount of connections between users
+* some features of the above
+
+It can be useful when designing new platforms.
+
+## Application Structure
 See [scheme in Figma](https://www.figma.com/board/RzTIebuqjBTp3RjnWyckLG/CollectorA?node-id=0-1&node-type=canvas&t=JJLXHee1CrzO8b3q-0).
-Or you can see this sceme as png in [/docs/CollectorA.png](./docs/CollectorA.png).
+Or you can see this scheme as png in [/docs/CollectorA.png](./docs/CollectorA.png). 
+*Scheme has not updated yet.*
+
+__HBase__ was chosen as the data storage system. 
+This platform allows you to create distributed and fast 
+storage systems. 
+
+For ease of development, docker compose is used.
+The application runs two containers: the database and 
+the application itself. Containers communicate with
+each other via localhost.
+
+It takes approximately 15 minutes
+to create images and start the program. 
+
+__Stack:__ Spring Boot, Gradle, Hbase, Docker. 
 
 ## Usage
 
 You can start the project using docker compose.
-See docker compose command description: 
+See the docker compose command description: 
 [/docs/Docker.md](./docs/Docker.md). 
 
 To manage the project work see [/docs/Scripts.md](./docs/Scripts.md).
-
-To generate a javadoc use `./scripts/javadoc.sh`
 
 ## Toolchain
 * [Spring Framework](https://spring.io/)
@@ -26,17 +48,14 @@ To generate a javadoc use `./scripts/javadoc.sh`
   - [Hbase reference guide](https://hbase.apache.org/book.html)
   - [HBase (client) javadoc](https://hbase.apache.org/devapidocs/org/apache/hadoop/hbase/client/package-summary.html)
   - [HBase configuration properties](https://docs.ezmeral.hpe.com/datafabric-customer-managed/78/HBase/HBaseConfigurationProperties.html)
+  - [HBase Dockerfile](https://apache.googlesource.com/hbase/+/rel/1.0.1/dev-support/hbase_docker)
+  Note that the official Dockerfile is outdated. It's updated
+  version: [/docker/hbase/Dockerfile](./docker/hbase/Dockerfile)
+  - [HBase git](https://github.com/apache/hbase)
 * [Gradle](https://gradle.com/)
-  - [Gradl
-// In this section you declare the dependencies for your production and test codee cources by TomGeorgy](https://tomgregory.com)
+  - [Learning Gradle with TomGeorgy](https://tomgregory.com)
 * [HTML parser: Jsoup](https://jsoup.org/)
   - [Jsoup HTML Parser Documentation](https://jsoup.org/apidocs/org/jsoup/Jsoup.html)
-* instagram4j:
-  - [instagram4j git](https://github.com/instagram4j/instagram4j) (last update 2022)
-  - org.brunocvcunha.instagram4j (last update 2020)
-  - [instagram4j org.brunocvcunha](https://www.javatips.net/api/instagram4j-master/src/main/java/org/brunocvcunha/instagram4j/Instagram4j.java)
-  - [instagram4j org.brunocvcunha form git](https://github.com/mikeekeghe/gitm4j) (last update 2019)
-* [Pinterest API](https://github.com/dempe/pinterest-java/)
 * [Docker](https://www.docker.com/)
   - [Docker hub](https://hub.docker.com/)
   - [Docker compose run](https://docs.docker.com/reference/cli/docker/compose/run/)
