@@ -1,7 +1,9 @@
 package org.example.CollectorA.Database;
 
+import java.lang.AutoCloseable;
+
 /**
- * Database Dispatcher interface.
+ * Database interface.
  * It uses to connect to the database and operate with a one table from the database.
  * There are only commands to write data to the database and to check
  * if the element has already been recorded.
@@ -11,7 +13,7 @@ package org.example.CollectorA.Database;
  * when the close() function is called.
  * @author UsoltsevI
  */
-public interface Dispatcher {
+public interface Database extends AutoCloseable {
     /**
      * This method opens a new connections with the database and
      * creates a table with tableName. If such table is already exists
@@ -35,9 +37,4 @@ public interface Dispatcher {
      * @return true if recorded, false if not
      */
     public boolean isAlreadyRecorded(DataModel data);
-
-    /**
-     * This method closes a connection with server
-     */
-    public void close();
 }

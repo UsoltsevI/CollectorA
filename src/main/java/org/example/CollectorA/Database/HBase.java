@@ -27,16 +27,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class implements HBase Dispatcher
+ * This class implements Database interface to communicate with HBase
  * @author UsoltsevI
  */
 @Component
-public class HBaseDispatcher implements Dispatcher {
+public class HBase implements Database {
     private TableName tableName;
     private Connection connection;
     private Table table;
     private List<String> columnFamilies;
-    private final Logger log = LoggerFactory.getLogger(HBaseDispatcher.class);
+    private final Logger log = LoggerFactory.getLogger(HBase.class);
 
     @Override
     public boolean connect(String tableName) {
@@ -54,26 +54,29 @@ public class HBaseDispatcher implements Dispatcher {
 
     private void loadTable() throws IOException {
         Configuration config  = HBaseConfiguration.create();
-        connection = ConnectionFactory.createConnection(config);
-        Admin admin = connection.getAdmin();
-        log.info("Connection is created");
+        config.set("hbase.zookeeper.quorum", "localhost");
+        config.set("hbase.zookeeper.property.clientPort", "2181");
 
-        if (!admin.tableExists(tableName)) {
-            log.info("Creating table '" + tableName.getNameAsString() + "'");
-            ColumnFamilyDescriptor columnFamilyDescriptor
-                    = new ModifyableColumnFamilyDescriptor(
-                            Bytes.toBytes(getUsersColumnFamilyName()));
-            TableDescriptorBuilder htable = TableDescriptorBuilder
-                    .newBuilder(tableName)
-                    .setColumnFamily(columnFamilyDescriptor);
-            admin.createTable(htable.build());
-            log.info("Table is created");
-        } else {
-            log.info("Table '" + tableName.getNameAsString() + "' already exists");
-        }
+        try (Connection connection = ConnectionFactory.createConnection(config)){
+            Admin admin = connection.getAdmin();
+            log.info("Connection is created");
 
-        table = connection.getTable(tableName);
-        admin.close();
+            if (!admin.tableExists(tableName)) {
+                log.info("Creating table '" + tableName.getNameAsString() + "'");
+                ColumnFamilyDescriptor columnFamilyDescriptor
+                        = new ModifyableColumnFamilyDescriptor(
+                        Bytes.toBytes(getUsersColumnFamilyName()));
+                TableDescriptorBuilder htable = TableDescriptorBuilder
+                        .newBuilder(tableName)
+                        .setColumnFamily(columnFamilyDescriptor);
+                admin.createTable(htable.build());
+                log.info("Table is created");
+            } else {
+                log.info("Table '" + tableName.getNameAsString() + "' already exists");
+            }
+            table = connection.getTable(tableName);
+            admin.close();
+        } catch (IOException ignored) {}
     }
 
     private String getUsersColumnFamilyName() {
@@ -110,7 +113,7 @@ public class HBaseDispatcher implements Dispatcher {
     }
 
     @Override
-    public void close() {
+    public void close() throws Exception {
         try {
             connection.close();
         } catch (IOException e) {

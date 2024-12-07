@@ -1,4 +1,3 @@
-
 ###
 # build CollectorA
 ###
@@ -11,8 +10,4 @@ RUN chmod +x installation.sh
 RUN ./installation.sh
 RUN rm ./installation.sh
 
-# HBase Zookeeper client port
-EXPOSE 2181
-# REST
 EXPOSE 8080
-# thrift

@@ -1,31 +1,14 @@
 # Collects CollectorA and HBase into containers and combines it
 
 services:
-  namenode:
-    extends:
-      file: ./docker/hbase/docker-compose-standalone.yml
-      service: namenode
-  datanode:
-    extends:
-      file: ./docker/hbase/docker-compose-standalone.yml
-      service: datanode
-  resourcemanager:
-    extends:
-      file: ./docker/hbase/docker-compose-standalone.yml
-      service: resourcemanager
-  nodemanager1:
-    extends:
-      file: ./docker/hbase/docker-compose-standalone.yml
-      service: nodemanager1
-  historyserver:
-    extends:
-      file: ./docker/hbase/docker-compose-standalone.yml
-      service: historyserver
-  hbase:
-    extends:
-      file: ./docker/hbase/docker-compose-standalone.yml
-      service: hbase
-
+  habse:
+    container_name: hbase
+    build: ./docker/hbase
+    command: /bin/bash -c start-hbase.sh hbase shell
+    networks:
+      - backend
+    ports:
+      - "80:8080"
   collectora:
     container_name: collectora
     build: ./docker/image
