@@ -20,7 +20,7 @@
 FROM ubuntu:22.04
 
 # Install Git, which is missing from the Ubuntu base images.
-RUN apt update && apt install -y git
+RUN apt update && apt install -y git wget
 
 # Add the dependencies from the hbase_docker folder and delete ones we don't need.
 WORKDIR /root
@@ -28,20 +28,25 @@ ADD . /root
 RUN find . -not -name "*tar.gz" -delete
 
 # Install Java.
+RUN wget https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.tar.gz
 RUN mkdir -p /usr/java
 RUN tar xzf *jdk* --strip-components 1 -C /usr/java
 ENV JAVA_HOME /usr/java
 
 # Install Maven.
+RUN wget https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
 RUN mkdir -p /usr/local/apache-maven
 RUN tar xzf *maven* --strip-components 1 -C /usr/local/apache-maven
 ENV MAVEN_HOME /usr/local/apache-maven
+
+# Add Java and Maven to the path.
+ENV PATH /usr/java/bin:/usr/local/apache-maven/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # Pull down HBase and build it into /root/hbase
 RUN git clone https://github.com/apache/hbase
 RUN mvn -T 4 clean install -DskipTests assembly:single -f ./hbase/pom.xml
 
-# Set HBASE_HOME, add it to the path along with path to Maven and Java
+# Set HBASE_HOME, add it to the path
 ENV HBASE_HOME /root/hbase
 ENV PATH /root/hbase/bin:/usr/java/bin:/usr/local/apache-maven/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 

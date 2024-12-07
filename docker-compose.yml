@@ -4,7 +4,7 @@ services:
   hbase:
     container_name: hbase
     build: ./docker/hbase
-    command: bash -c "start-hbase.sh; hbase shell"
+    command: bash -c "start-hbase.sh; hbase shell && tail -f /dev/null"
     networks:
       - backend
     ports:
