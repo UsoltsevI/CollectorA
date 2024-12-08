@@ -4,8 +4,12 @@
 FROM ubuntu:22.04
 WORKDIR /root
 
-COPY ./installation.sh ./installation.sh
-
-RUN chmod +x installation.sh
-RUN ./installation.sh
-RUN rm ./installation.sh
+RUN apt update && apt install -y \
+    vim   \
+    curl  \
+    wget  \
+    openjdk-21-jdk \
+    tree  \
+    htop  \
+    git   \
+    net-tools

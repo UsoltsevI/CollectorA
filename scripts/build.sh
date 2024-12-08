@@ -4,4 +4,4 @@ BASEDIR=$(dirname "$0")
 cd $BASEDIR
 
 cd ..
-./gradlew clean build
+./gradlew build

@@ -27,9 +27,6 @@ The application runs two containers: the database and
 the application itself. Containers communicate with
 each other via localhost.
 
-It takes approximately 15 minutes
-to create images and start the program. 
-
 __Stack:__ Spring Boot, Gradle, Hbase, Docker. 
 
 ## Usage
@@ -39,6 +36,63 @@ See the docker compose command description:
 [/docs/Docker.md](./docs/Docker.md). 
 
 To manage the project work see [/docs/Scripts.md](./docs/Scripts.md).
+
+### Usage example: assembling and launching application using docker compose
+__Assembling:__
+
+Creation docker compose containers:
+```shell
+./docker/client/create.sh
+./docker/client/up.sh
+```
+It takes approximately 15 minutes
+to create images and up the containers.
+
+
+Checking that the containers are running: 
+```shell
+docker ps
+```
+collectora_hbase and collectora_collectora must be on the list.
+
+Logs in to collectora to manage the application
+```shell
+./docker/client/login.sh
+```
+
+Building an application:
+```shell
+./scripts/build.sh
+```
+
+__Running:__
+```shell
+./scripts/run.sh
+```
+
+__Destroying:__
+
+To destroy the application in container:
+```shell
+./scripts/destroy.sh
+```
+
+Exit from container:
+```shell
+exit
+```
+
+Stop all containers:
+```shell
+./docker/client/stop.sh
+```
+
+Delete all containers:
+```shell
+./docker/client/down.sh
+```
+
+*The section will be finalized later...*
 
 ## Toolchain
 * [Spring Framework](https://spring.io/)
