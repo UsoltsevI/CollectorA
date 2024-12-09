@@ -40,6 +40,6 @@ test {
 
 jar {
     manifest {
-        attributes 'Main-class': 'org.example.CollectorA.CollectorA'
+        attributes 'Main-class': 'org.example.collectora.CollectorA'
     }
 }

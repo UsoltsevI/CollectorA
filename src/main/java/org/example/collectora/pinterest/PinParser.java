@@ -1,13 +1,4 @@
-package org.example.CollectorA.Pinterest;
-
-import java.io.IOException;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.function.Predicate;
-import java.lang.IllegalArgumentException;
+package org.example.collectora.pinterest;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -18,7 +9,16 @@ import org.jsoup.nodes.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.example.CollectorA.Network.PageLoader;
+import java.io.IOException;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.function.Predicate;
+import java.lang.IllegalArgumentException;
+
+import org.example.collectora.network.PageLoader;
 
 public class PinParser {
     private static final Pattern DATA_JSON_REGEX = Pattern.compile("(\\{.*\\})");
@@ -32,6 +32,7 @@ public class PinParser {
         JsonObject data = parseResponseData(parseDetailData(page));
 
         return Pin.builder()
+                .id(parsePinId(data))
                 .meta(parseMeta(data))
                 .board(parseBoard(data.getAsJsonObject("board")))
                 .origin(parsePinner(data.getAsJsonObject("originPinner")))
@@ -94,6 +95,10 @@ public class PinParser {
                 .shareCount(data.get("shareCount").getAsInt())
                 .totalReactionCount(data.get("totalReactionCount").getAsInt())
                 .build();
+    }
+
+    private static String parsePinId(JsonObject data) {
+        return data.get("entityId").getAsString();
     }
 
     private static Board parseBoard(JsonObject board) {

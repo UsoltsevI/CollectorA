@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import org.example.CollectorA.Network.SearchEngine;
-import org.example.CollectorA.Pinterest.PinterestSE;
+import org.example.collectora.network.SearchEngine;
+import org.example.collectora.pinterest.PinterestSE;
 
 /**
  * The main class of the CollectoA profram. It starts the work of all the collectors on different threads.

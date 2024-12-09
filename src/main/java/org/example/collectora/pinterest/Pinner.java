@@ -1,4 +1,4 @@
-package org.example.CollectorA.Pinterest;
+package org.example.collectora.pinterest;
 
 import lombok.Getter;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package org.example.CollectorA.Network;
+package org.example.collectora.network;
 
 import java.io.IOException;
 
