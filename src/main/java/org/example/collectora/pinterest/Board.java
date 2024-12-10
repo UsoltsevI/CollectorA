@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.Builder;
 import org.apache.hadoop.hbase.util.Bytes;
 
-import java.util.Map;
-
 import org.example.collectora.database.ColumnFamily;
 
 @Getter
@@ -20,9 +18,13 @@ public class Board {
     private final boolean isCollaborative;
 
     public ColumnFamily toColumnFamily(byte[] columnFamilyName) {
-        ColumnFamily columnFamily = new ColumnFamily(columnFamilyName);
-        Map<byte[],byte[]> columnValues = columnFamily.getColumnValues();
-        columnValues.put("id".getBytes(), Bytes.toBytes(id));
-        return columnFamily;
+        return new ColumnFamily(columnFamilyName)
+                .put("id".getBytes(), Bytes.toBytes(id))
+                .put("url".getBytes(), Bytes.toBytes(url))
+                .put("name".getBytes(), Bytes.toBytes(name))
+                .put("privacy".getBytes(), Bytes.toBytes(privacy))
+                .put("ownerId".getBytes(), Bytes.toBytes(ownerId))
+                .put("ownerEntityId".getBytes(), Bytes.toBytes(ownerEntityId))
+                .put("isCollaborative".getBytes(), Bytes.toBytes(isCollaborative));
     }
 }

@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.Builder;
 import org.apache.hadoop.hbase.util.Bytes;
 
-import java.util.Map;
-
 import org.example.collectora.database.ColumnFamily;
 
 @Getter
@@ -20,15 +18,13 @@ public class PinMeta {
     private final int totalReactionCount;
 
     public ColumnFamily toColumnFamily(byte[] columFamilyName) {
-        ColumnFamily columnFamily = new ColumnFamily(columFamilyName);
-        Map<byte[],byte[]> columnValues = columnFamily.getColumnValues();
-        columnValues.put("createdAt".getBytes(),        createdAt.getBytes());
-        columnValues.put("description".getBytes(),      description.getBytes());
-        columnValues.put("seoDescription".getBytes(),   seoDescription.getBytes());
-        columnValues.put("favoriteUserCount".getBytes(), Bytes.toBytes(favoriteUserCount));
-        columnValues.put("repinCount".getBytes(),       Bytes.toBytes(repinCount));
-        columnValues.put("shareCount".getBytes(),       Bytes.toBytes(shareCount));
-        columnValues.put("totalReactionCount".getBytes(), Bytes.toBytes(totalReactionCount));
-        return columnFamily;
+        return new ColumnFamily(columFamilyName)
+                .put("createdAt".getBytes(), createdAt.getBytes())
+                .put("description".getBytes(), description.getBytes())
+                .put("seoDescription".getBytes(), seoDescription.getBytes())
+                .put("favoriteUserCount".getBytes(), Bytes.toBytes(favoriteUserCount))
+                .put("repinCount".getBytes(), Bytes.toBytes(repinCount))
+                .put("shareCount".getBytes(), Bytes.toBytes(shareCount))
+                .put("totalReactionCount".getBytes(), Bytes.toBytes(totalReactionCount));
     }
 }

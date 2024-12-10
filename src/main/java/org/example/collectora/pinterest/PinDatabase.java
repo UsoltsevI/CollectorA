@@ -19,11 +19,10 @@ import org.example.collectora.database.Row;
 import org.example.collectora.database.ColumnFamily;
 
 public class PinDatabase {
-    private static final String configFileName = "config/hbase-connection.json";
+    private static final String configFileName = "/config/hbase-connection.json";
     private static final Logger LOGGER = LoggerFactory.getLogger(PinDatabase.class);
     private static final byte[] TABLE_NAME = "pins".getBytes();
-    private static final byte[] META_CF = "meta".getBytes();
-    private static final byte[] PINNER_CF = "pinner".getBytes();
+
     private final HBase database = new HBase();
 
     public void connect() throws IOException {
@@ -44,10 +43,15 @@ public class PinDatabase {
         return properties;
     }
 
-    public void savePin(Pin pin) {
-        Row row = new Row(pin.getId().getBytes());
-        Map<byte[],ColumnFamily> columnFamilies = row.getColumnFamilies();
-        columnFamilies.put(META_CF, pin.getMeta().toColumnFamily(META_CF));
-        database.put(TABLE_NAME, row);
+    public void savePin(Pin pin) throws IOException {
+        database.put(TABLE_NAME, pin.toRow());
+    }
+
+    public boolean isSaved(String pinId) throws IOException {
+        Row row = database.get(TABLE_NAME, pinId.getBytes());
+        if (row.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 }

@@ -21,8 +21,9 @@ public class ColumnFamily {
         columnValues = new Hashtable<>();
     }
 
-    public void put(byte[] column, byte[] value) {
+    public ColumnFamily put(byte[] column, byte[] value) {
         columnValues.put(Arrays.copyOf(column, column.length), Arrays.copyOf(value, value.length));
+        return this;
     }
 
     public byte[] get(byte[] column) {

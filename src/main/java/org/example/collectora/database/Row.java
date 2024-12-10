@@ -21,8 +21,9 @@ public class Row {
         columnFamilies = new Hashtable<>();
     }
 
-    public void put(byte[] columnFamilyName, ColumnFamily columnFamily) {
+    public Row put(byte[] columnFamilyName, ColumnFamily columnFamily) {
         columnFamilies.put(Arrays.copyOf(columnFamilyName, columnFamilyName.length), columnFamily);
+        return this;
     }
 
     public ColumnFamily get(byte[] columnFamilyName) {
@@ -31,5 +32,9 @@ public class Row {
 
     public ColumnFamily delete(byte[] columnFamilyName) {
         return columnFamilies.remove(columnFamilyName);
+    }
+
+    public boolean isEmpty() {
+        return columnFamilies.isEmpty();
     }
 }

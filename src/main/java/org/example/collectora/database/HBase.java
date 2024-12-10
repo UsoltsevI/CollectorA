@@ -35,12 +35,8 @@ public class HBase implements AutoCloseable {
             config.set(entry.getKey(), entry.getValue());
         }
 
-        try {
-            connection = ConnectionFactory.createConnection(config);
-            admin = connection.getAdmin();
-        } catch (IOException e) {
-            LOGGER.info(e.getMessage());
-        }
+        connection = ConnectionFactory.createConnection(config);
+        admin = connection.getAdmin();
     }
 
     public void createTable(byte[] tableName) throws IOException {
@@ -48,30 +44,28 @@ public class HBase implements AutoCloseable {
         if (!admin.tableExists(tName)) {
             HTableDescriptor tableDescriptor = new HTableDescriptor(tName);
             admin.createTable(tableDescriptor);
-            LOGGER.info("Table '" + tableName + "' created.");
+            LOGGER.info("Table '" + new String(tableName) + "' created.");
         } else {
-            LOGGER.info("Table '" + tableName + "' already exists.");
+            LOGGER.info("Table '" + new String(tableName) + "' already exists.");
         }
     }
 
-    public void put(byte[] tableName, Row row) {
-        try (Table table = connection.getTable(TableName.valueOf(tableName))) {
-            Put put = new Put(row.getName());
-            for (Map.Entry<byte[],ColumnFamily> cf : row.getColumnFamilies().entrySet()) {
-                for (Map.Entry<byte[],byte[]> cv : cf.getValue().getColumnValues().entrySet()) {
-                    put.addColumn(cf.getKey(), cv.getKey(), cv.getValue());
-                }
+    public void put(byte[] tableName, Row row) throws IOException {
+        Table table = connection.getTable(TableName.valueOf(tableName));
+        Put put = new Put(row.getName());
+        for (Map.Entry<byte[],ColumnFamily> cf : row.getColumnFamilies().entrySet()) {
+            for (Map.Entry<byte[],byte[]> cv : cf.getValue().getColumnValues().entrySet()) {
+                put.addColumn(cf.getKey(), cv.getKey(), cv.getValue());
             }
-            table.put(put);
-        } catch (IOException e) {
-            LOGGER.info("Failed to save data in row '" + new String(row.getName())
-                    + "' in table: '" + new String(tableName) + "'");
-            LOGGER.info(e.getMessage());
         }
+        table.put(put);
     }
 
     public Row get(byte[] tableName, byte[] rowName) throws IOException {
         Result result = connection.getTable(TableName.valueOf(tableName)).get(new Get(rowName));
+        if (result.isEmpty()) {
+            return new Row(rowName);
+        }
         Cell[] cells = result.rawCells();
         Row row = new Row(rowName);
         Map<byte[],ColumnFamily> columnFamilies = row.getColumnFamilies();
@@ -87,13 +81,10 @@ public class HBase implements AutoCloseable {
 
     public Row deleteRow(byte[] tableName, byte[] rowName) throws IOException {
         Row row = get(tableName, rowName);
-        try (Table table = connection.getTable(TableName.valueOf(tableName))) {
-            Delete delete = new Delete(rowName);
-            table.delete(delete);
-            LOGGER.info("Row '" + new String(rowName) + "' deleted");
-        } catch (IOException e) {
-            LOGGER.info(e.getMessage());
-        }
+        Table table = connection.getTable(TableName.valueOf(tableName));
+        Delete delete = new Delete(rowName);
+        table.delete(delete);
+        LOGGER.info("Row '" + new String(rowName) + "' deleted");
         return row;
     }
 
@@ -102,9 +93,9 @@ public class HBase implements AutoCloseable {
         if (admin.tableExists(tName)) {
             admin.disableTable(tName);
             admin.deleteTable(tName);
-            LOGGER.info("Table '" + tableName + "' deleted.");
+            LOGGER.info("Table '" + new String(tableName) + "' deleted.");
         } else {
-            LOGGER.info("Table '" + tableName + "' does not exist.");
+            LOGGER.info("Table '" + new String(tableName) + "' does not exist.");
         }
     }
 
