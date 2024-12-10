@@ -1,9 +1,9 @@
 package org.example.collectora.network;
 
-import java.io.IOException;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+
+import java.io.IOException;
 
 public class PageLoader {
     public static Document load(String url) throws IOException {

@@ -10,19 +10,19 @@ import org.slf4j.LoggerFactory;
 import java.util.Map;
 import java.util.Hashtable;
 import java.util.Set;
+import java.lang.AutoCloseable;
 import java.io.IOException;
-import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.io.Reader;
 
 import org.example.collectora.database.HBase;
 import org.example.collectora.database.Row;
 import org.example.collectora.database.ColumnFamily;
 
-public class PinDatabase {
-    private static final String configFileName = "/config/hbase-connection.json";
+public class PinDatabase implements AutoCloseable {
+    private static final String CONFIG_FILE_NAME = "/config/hbase-connection.json";
     private static final Logger LOGGER = LoggerFactory.getLogger(PinDatabase.class);
     private static final byte[] TABLE_NAME = "pins".getBytes();
-
     private final HBase database = new HBase();
 
     public void connect() throws IOException {
@@ -31,7 +31,7 @@ public class PinDatabase {
 
     private Map<String,String> loadProperties() throws IOException {
         Map<String,String> properties = new Hashtable<>();
-        try (Reader reader = new FileReader(configFileName)) {
+        try (Reader reader = new InputStreamReader(PinDatabase.class.getResourceAsStream(CONFIG_FILE_NAME))) {
             JsonObject json = new Gson().fromJson(reader, JsonObject.class);
             Set<Map.Entry<String,JsonElement>> entries = json.entrySet();
             for (Map.Entry<String,JsonElement> entry : entries) {
@@ -40,6 +40,7 @@ public class PinDatabase {
         } catch (JsonSyntaxException e) {
             LOGGER.info(e.getMessage());
         }
+        LOGGER.info("Connection properties: " + properties);
         return properties;
     }
 
@@ -53,5 +54,10 @@ public class PinDatabase {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void close() throws Exception {
+        database.close();
     }
 }
