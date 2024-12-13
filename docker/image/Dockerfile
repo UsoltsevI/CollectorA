@@ -12,4 +12,5 @@ RUN apt update && apt install -y \
     tree  \
     htop  \
     git   \
-    net-tools
+    net-tools \
+    telnet

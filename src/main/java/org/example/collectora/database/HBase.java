@@ -4,6 +4,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HTableDescriptor;
+import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Admin;
 import org.apache.hadoop.hbase.client.Connection;
@@ -39,10 +40,11 @@ public class HBase implements AutoCloseable {
         admin = connection.getAdmin();
     }
 
-    public void createTable(byte[] tableName) throws IOException {
+    public void createTable(byte[] tableName, byte[] columnFamily) throws IOException {
         TableName tName = TableName.valueOf(tableName);
         if (!admin.tableExists(tName)) {
             HTableDescriptor tableDescriptor = new HTableDescriptor(tName);
+            tableDescriptor.addFamily(new HColumnDescriptor(columnFamily));
             admin.createTable(tableDescriptor);
             LOGGER.info("Table '" + new String(tableName) + "' created.");
         } else {

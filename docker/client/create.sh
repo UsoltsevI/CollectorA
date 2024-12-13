@@ -11,8 +11,6 @@ build_containers() {
   cd $BASEDIR
   echo "Building CollectorA image..."
   docker compose -f ../../docker-compose.yml build collectora
-  echo "Building HBase image..."
-  docker compose -f ../../docker-compose.yml build hbase
 }
 
 pull_images

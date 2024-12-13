@@ -19,8 +19,14 @@
 
 FROM ubuntu:22.04
 
-# Install Git, which is missing from the Ubuntu base images.
-RUN apt update && apt install -y git wget
+# Install useful tools, which is missing from the Ubuntu base images.
+RUN apt update && apt install -y git \
+    wget \
+    vim  \
+    curl \
+    net-tools \
+    telnet \
+    htop
 
 # Add the dependencies from the hbase_docker folder and delete ones we don't need.
 WORKDIR /root

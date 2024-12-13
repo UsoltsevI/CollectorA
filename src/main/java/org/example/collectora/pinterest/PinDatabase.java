@@ -44,6 +44,10 @@ public class PinDatabase implements AutoCloseable {
         return properties;
     }
 
+    public void loadTable(String columnFamily) throws IOException {
+        database.createTable(TABLE_NAME, columnFamily.getBytes());
+    }
+
     public void savePin(Pin pin) throws IOException {
         database.put(TABLE_NAME, pin.toRow());
     }

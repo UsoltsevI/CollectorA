@@ -1,3 +1,3 @@
 #!/bin/bash
 
-CONTAINERS=("collectora" "hbase")
+CONTAINERS=("collectora" "hbase" "zookeeper")

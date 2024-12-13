@@ -1,18 +1,39 @@
 # Collects CollectorA and HBase into containers and combines it
 
 services:
-  hbase:
-    container_name: hbase
-    build: ./docker/hbase
-    command: bash -c "start-hbase.sh; hbase shell && tail -f /dev/null"
+  zookeeper:
+    container_name: zookeeper
+    image: zookeeper:3.9.3
+    hostname: zookeeper
+    command: bash -c "apt update && apt upgrade; tail -f /dev/null"
+    environment:
+      ZOO_MY_ID: 1
     networks:
       - backend
     ports:
-      - "2181:2181"
-      - "16000:16000"
+      - 2181:2181
+
+  hbase:
+    container_name: hbase
+    hostname: hbase
+    build: ./docker/hbase
+    command: bash -c "start-hbase.sh; hbase shell && tail -f /dev/null"
+    depends_on:
+      - zookeeper
+    networks:
+      - backend
+    ports:
+      - "16000:16000" # Master port
+      - "16010:16010" # Master info port
+    environment:
+      HBASE_MANAGES_ZK: "false" # Важно: HBase управляет своим ZooKeeper
+      HBASE_ZK_QUORUM: zookeeper:2181
+      HBASE_MASTER_PORT: 16000
+      HBASE_INFO_PORT: 16010
 
   collectora:
     container_name: collectora
+    hostname: collectora
     build: ./docker/image
     command: bash -c "chmod +x ${COLLECTORA_DIR}/scripts/*
       && tail -f /dev/null"
@@ -29,6 +50,7 @@ services:
     ports:
       - "8081:8080"
     depends_on:
+      - zookeeper
       - hbase
 
 networks:
