@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.Builder;
 import lombok.AllArgsConstructor;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import org.example.collectora.database.Row;
 
 @Getter
@@ -21,6 +24,16 @@ public class Pin {
     private final Pinner origin;
     private final Pinner pinner;
     private final StreamingData streamingData;
+
+    public static List<byte[]> getColumnFamilies() {
+        List<byte[]> list = new ArrayList<>();
+        list.add(META_CF);
+        list.add(PINNER_CF);
+        list.add(ORIGIN_CF);
+        list.add(BOARD_CF);
+        list.add(STREAMING_DATA_CF);
+        return list;
+    }
 
     public Row toRow() {
         return new Row(id.getBytes())

@@ -40,11 +40,13 @@ public class HBase implements AutoCloseable {
         admin = connection.getAdmin();
     }
 
-    public void createTable(byte[] tableName, byte[] columnFamily) throws IOException {
+    public void createTable(byte[] tableName, List<byte[]> columnFamilies) throws IOException {
         TableName tName = TableName.valueOf(tableName);
         if (!admin.tableExists(tName)) {
             HTableDescriptor tableDescriptor = new HTableDescriptor(tName);
-            tableDescriptor.addFamily(new HColumnDescriptor(columnFamily));
+            for (byte[] columnFamily : columnFamilies) {
+                tableDescriptor.addFamily(new HColumnDescriptor(columnFamily));
+            }
             admin.createTable(tableDescriptor);
             LOGGER.info("Table '" + new String(tableName) + "' created.");
         } else {

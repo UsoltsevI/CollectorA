@@ -29,7 +29,13 @@ public class PinParser {
         }
 
         Document page = PageLoader.load(url);
-        JsonObject data = parseResponseData(parseDetailData(page));
+        JsonObject data;
+
+        try {
+            data = parseResponseData(parseDetailData(page));
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage() + "; IT's not a pin page!");
+        }
 
         return Pin.builder()
                 .id(parsePinId(data))
@@ -107,7 +113,7 @@ public class PinParser {
                 .id(board.get("id").getAsString())
                 .url(board.get("url").getAsString())
                 .name(board.get("name").getAsString())
-                .privacy(board.get("public").getAsString())
+                .privacy(board.get("privacy").getAsString())
                 .ownerId(owner.get("id").getAsString())
                 .ownerEntityId(owner.get("entityId").getAsString())
                 .isCollaborative(board.get("isCollaborative").getAsBoolean())

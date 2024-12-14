@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Map;
 import java.util.Hashtable;
 import java.util.Set;
+import java.util.List;
 import java.lang.AutoCloseable;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -44,8 +45,8 @@ public class PinDatabase implements AutoCloseable {
         return properties;
     }
 
-    public void loadTable(String columnFamily) throws IOException {
-        database.createTable(TABLE_NAME, columnFamily.getBytes());
+    public void loadTable(List<byte[]> columnFamilies) throws IOException {
+        database.createTable(TABLE_NAME, columnFamilies);
     }
 
     public void savePin(Pin pin) throws IOException {

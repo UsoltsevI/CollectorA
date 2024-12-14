@@ -25,7 +25,7 @@ public class PinterestSE implements SearchEngine {
         try {
             database.connect();
             LOGGER.info("Connected to the database");
-            database.loadTable(ZERO_CF);
+            database.loadTable(Pin.getColumnFamilies());
             LOGGER.info("Table is loaded");
         } catch (IOException e) {
             LOGGER.info(e.getMessage());
@@ -50,7 +50,7 @@ public class PinterestSE implements SearchEngine {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter 'quit' to stop the program");
         String input = scanner.nextLine();
-        while (!input.equalsIgnoreCase("quit")) {
+        while (!input.equalsIgnoreCase("quit") && !input.equalsIgnoreCase("q")) {
             input = scanner.nextLine();
         }
         cycle.stop();
@@ -86,8 +86,9 @@ public class PinterestSE implements SearchEngine {
                 }
 
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
+                    stop = true;
                     LOGGER.info(e.getMessage());
                     break;
                 }
