@@ -26,7 +26,7 @@ services:
       - "16000:16000" # Master port
       - "16010:16010" # Master info port
     environment:
-      HBASE_MANAGES_ZK: "false" # Важно: HBase управляет своим ZooKeeper
+      HBASE_MANAGES_ZK: "false" # HBase manages it's ZooKeeper
       HBASE_ZK_QUORUM: zookeeper:2181
       HBASE_MASTER_PORT: 16000
       HBASE_INFO_PORT: 16010
