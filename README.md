@@ -14,9 +14,10 @@ The information collected can be used to estimate the following:
 It can be useful when designing new platforms.
 
 ## Application Structure
-See [scheme in Figma](https://www.figma.com/board/RzTIebuqjBTp3RjnWyckLG/CollectorA?node-id=0-1&node-type=canvas&t=JJLXHee1CrzO8b3q-0).
-Or you can see this scheme as png in [/docs/CollectorA.png](./docs/CollectorA.png). 
-*Scheme has not updated yet.*
+
+[//]: # (See [scheme in Figma]&#40;https://www.figma.com/board/RzTIebuqjBTp3RjnWyckLG/CollectorA?node-id=0-1&node-type=canvas&t=JJLXHee1CrzO8b3q-0&#41;.)
+[//]: # (Or you can see this scheme as png in [/docs/CollectorA.png]&#40;./docs/CollectorA.png&#41;. )
+[//]: # (*Scheme has not updated yet.*)
 
 __HBase__ was chosen as the data storage system. 
 This platform allows you to create distributed and fast 
