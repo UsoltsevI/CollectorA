@@ -39,6 +39,11 @@ See the docker compose command description:
 To manage the project work see [/docs/Scripts.md](./docs/Scripts.md).
 
 ### Usage example: assembling and launching application using docker compose
+__Clone project:__
+```shell
+git clone git@github.com:UsoltsevI/CollectorA.git
+```
+
 __Assembling:__
 
 Creation docker compose containers:
@@ -54,14 +59,29 @@ Checking that the containers are running:
 ```shell
 docker ps
 ```
-collectora_hbase and collectora_collectora must be on the list.
+hbase, zookeeper and collectora must be on the list.
 
-Logs in to collectora to manage the application
+Start zookeeper in zookeeper container:
+```shell
+./docker/client/login.sh zookeeper
+./bin/zkService.sh start
+exit
+```
+
+Copy hbase-site.xml to hbase container and start hbase:
+```shell
+docker cp ./docker/hbase/hbase-site.xml hbase:/root/hbase/conf/hbase-site.xml
+./docker/client/login.sh hbase
+start-hbase.sh
+exit
+```
+
+Log in to collectora to compile the application
 ```shell
 ./docker/client/login.sh
 ```
 
-Building an application:
+Build the application:
 ```shell
 ./scripts/build.sh
 ```
@@ -92,8 +112,6 @@ Delete all containers:
 ```shell
 ./docker/client/down.sh
 ```
-
-*The section will be finalized later...*
 
 ## Toolchain
 * [Spring Framework](https://spring.io/)
