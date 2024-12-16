@@ -33,8 +33,8 @@ public class PinterestSE implements SearchEngine {
         }
 
         Cycle cycle = new Cycle();
-        Thread thread = new Thread(cycle);
-        thread.start();
+        Thread cycleThread = new Thread(cycle);
+        cycleThread.start();
         interrupt(cycle);
 
         try {
@@ -48,7 +48,7 @@ public class PinterestSE implements SearchEngine {
 
     private void interrupt(Cycle cycle) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter 'quit' to stop the program");
+        System.out.println("Enter 'quit' or 'q' to stop the program");
         String input = scanner.nextLine();
         while (!input.equalsIgnoreCase("quit") && !input.equalsIgnoreCase("q")) {
             input = scanner.nextLine();
@@ -83,14 +83,6 @@ public class PinterestSE implements SearchEngine {
                 } catch (IOException | IllegalArgumentException e) {
                     LOGGER.info(e.getMessage());
                     e.printStackTrace();
-                }
-
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    stop = true;
-                    LOGGER.info(e.getMessage());
-                    break;
                 }
             }
         }
