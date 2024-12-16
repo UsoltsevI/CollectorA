@@ -56,3 +56,8 @@ RUN tar xzf *hbase*tar.gz --strip-components 1 -C /root/hbase
 # Set HBASE_HOME, add it to the path
 ENV HBASE_HOME /root/hbase
 ENV PATH /root/hbase/bin:/usr/java/bin:/usr/local/apache-maven/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# Free space
+RUN rm -rf jdk-21_linux-x64_bin.tar.gz
+RUN rm -rf apache-maven-3.9.9-bin.tar.gz
+RUN rm -rf hbase-2.5.10-bin.tar.gz
