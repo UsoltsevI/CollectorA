@@ -48,13 +48,11 @@ ENV MAVEN_HOME /usr/local/apache-maven
 # Add Java and Maven to the path.
 ENV PATH /usr/java/bin:/usr/local/apache-maven/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-# Pull down HBase and build it into /root/hbase
-RUN git clone https://github.com/apache/hbase
-RUN mvn -T 4 clean install -DskipTests assembly:single -f ./hbase/pom.xml
+# Install hbase
+RUN wget https://dlcdn.apache.org/hbase/stable/hbase-2.5.10-bin.tar.gz
+RUN mkdir -p /root/hbase
+RUN tar xzf *hbase*tar.gz --strip-components 1 -C /root/hbase
 
 # Set HBASE_HOME, add it to the path
 ENV HBASE_HOME /root/hbase
 ENV PATH /root/hbase/bin:/usr/java/bin:/usr/local/apache-maven/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-
-# start HBase
-# CMD ["/bin/bash", "-c", "start-hbase.sh; hbase shell"]

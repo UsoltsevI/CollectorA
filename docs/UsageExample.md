@@ -23,33 +23,20 @@ docker ps
 ```
 hbase, zookeeper and collectora must be on the list.
 
-Start zookeeper in zookeeper container:
+Build the application
 ```shell
-./docker/client/login.sh zookeeper
-./bin/zkService.sh start
-exit
-```
-
-Copy hbase-site.xml to hbase container and start hbase:
-```shell
-docker cp ./docker/hbase/hbase-site.xml hbase:/root/hbase/conf/hbase-site.xml
-./docker/client/login.sh hbase
-start-hbase.sh
-exit
-```
-
-Log in to collectora to compile the application
-```shell
-./docker/client/login.sh
-```
-
-Build the application:
-```shell
-./scripts/build.sh
+docker exec hbase ./CollectorA/scripts/build.sh
 ```
 
 ### Running:
+Run zookeeper and hbase:
 ```shell
+./docker/client/run.sh
+```
+Run the application:
+```shell
+./docker/client/login.sh
+cd CollectorA
 ./scripts/run.sh
 ```
 

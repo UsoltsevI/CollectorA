@@ -17,7 +17,7 @@ services:
     container_name: hbase
     hostname: hbase
     build: ./docker/hbase
-    command: bash -c "start-hbase.sh; hbase shell && tail -f /dev/null"
+    command: bash -c "tail -f /dev/null"
     depends_on:
       - zookeeper
     networks:
