@@ -8,7 +8,11 @@
     </property>
     <property>
         <name>hbase.tmp.dir</name>
-        <value>${env.HBASE_HOME:-.}/tmp</value>
+        <value>/root/hbase/tmp</value>
+    </property>
+    <property>
+        <name>hbase.unsafe.stream.capability.enforce</name>
+        <value>false</value>
     </property>
     <property>
         <name>hbase.zookeeper.quorum</name>
