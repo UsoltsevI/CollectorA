@@ -87,6 +87,7 @@ public class PinterestSE implements SearchEngine {
                 try {
                     pinUrl = getNextPinUrl();
                     if (pinUrl == null || pinUrl == "") {
+                        LOGGER.info("END");
                         stop();
                         break;
                     }
