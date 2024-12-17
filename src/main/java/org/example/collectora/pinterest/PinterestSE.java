@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.lang.StringBuilder;
 import java.util.Random;
 import java.util.Scanner;
@@ -14,11 +16,9 @@ import org.example.collectora.network.SearchEngine;
 @Component
 public class PinterestSE implements SearchEngine {
     private static final Logger LOGGER = LoggerFactory.getLogger(PinterestSE.class);
-    private static final String ZERO_CF = "meta";
-    private static final String PREFIX = "https://ru.pinterest.com/pin/";
-    private final Random random = new Random();
+    private static final String ADDR_FILE_NAME = "/addresses.txt";
     private final PinDatabase database = new PinDatabase();
-    private final StringBuilder pinId = new StringBuilder("1477812373261109");
+    private BufferedReader addrReader;
 
     @Override
     public void collect() {
@@ -29,6 +29,13 @@ public class PinterestSE implements SearchEngine {
             LOGGER.info("Table is loaded");
         } catch (IOException e) {
             LOGGER.info(e.getMessage());
+            return;
+        }
+
+        try {
+            loadAddressesFile();
+        } catch (IOException e) {
+            LOGGER.info("Failed to load addresses file");
             return;
         }
 
@@ -56,9 +63,14 @@ public class PinterestSE implements SearchEngine {
         cycle.stop();
     }
 
-    private String getRandomPinUrl() {
-        pinId.setCharAt(random.nextInt(pinId.length()), (char) (random.nextInt(10) + '0'));
-        return PREFIX + pinId.toString();
+    private void loadAddressesFile() throws IOException {
+        addrReader = new BufferedReader(
+                new InputStreamReader(
+                        PinterestSE.class.getResourceAsStream(ADDR_FILE_NAME)));
+    }
+
+    private String getNextPinUrl() throws IOException {
+        return addrReader.readLine();
     }
 
     private class Cycle implements Runnable {
@@ -71,13 +83,21 @@ public class PinterestSE implements SearchEngine {
         @Override
         public void run() {
             while (!stop) {
+                String pinUrl;
                 try {
-                    String pinUrl = getRandomPinUrl();
-                    LOGGER.info("Current pin url: '" + pinUrl + "'");
-                    Pin pin = PinParser.parse(pinUrl);
-                    if (database.isSaved(pin.getId())) {
-                        LOGGER.info("Pin '" + pin.getId() + "' has been already saved");
+                    pinUrl = getNextPinUrl();
+                } catch (IOException e) {
+                    LOGGER.info(e.getMessage());
+                    stop();
+                    break;
+                }
+                LOGGER.info("Current pin url: '" + pinUrl + "'");
+                try {
+                    String pinId = PinParser.getPinId(pinUrl);
+                    if (database.isSaved(pinId)) {
+                        LOGGER.info("Pin '" + pinId + "' has been already saved");
                     } else {
+                        Pin pin = PinParser.parse(pinUrl);
                         database.savePin(pin);
                     }
                 } catch (IOException | IllegalArgumentException e) {

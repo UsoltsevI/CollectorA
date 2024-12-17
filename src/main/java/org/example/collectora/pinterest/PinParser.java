@@ -1,6 +1,7 @@
 package org.example.collectora.pinterest;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonSyntaxException;
@@ -22,6 +23,7 @@ import org.example.collectora.network.PageLoader;
 
 public class PinParser {
     private static final Pattern DATA_JSON_REGEX = Pattern.compile("(\\{.*\\})");
+    private static final Pattern PIN_ID_REGEX = Pattern.compile("[0-9]{2,}");
 
     public static Pin parse(String url) throws IOException, IllegalArgumentException {
         if (!UrlManager.isUrlSupported(url)) {
@@ -40,11 +42,32 @@ public class PinParser {
         return Pin.builder()
                 .id(parsePinId(data))
                 .meta(parseMeta(data))
-                .board(parseBoard(data.getAsJsonObject("board")))
-                .origin(parsePinner(data.getAsJsonObject("originPinner")))
-                .pinner(parsePinner(data.getAsJsonObject("pinner")))
-                .streamingData(parseStreamingData(data.getAsJsonObject("imageSpec_orig")))
+                .board(parseBoard(getOrNull(data, "board")))
+                .origin(parsePinner(getOrNull(data , "originPinner")))
+                .pinner(parsePinner(getOrNull(data, "pinner")))
+                .streamingData(parseStreamingData(getOrNull(data, "imageSpec_orig")))
                 .build();
+    }
+
+    private static JsonObject getOrNull(JsonObject json, String field) {
+        if (json == null) { return null; }
+        if (json.has("field")) {
+            if (!json.get("field").equals(JsonNull.INSTANCE)) {
+                return json.getAsJsonObject("field");
+            }
+        }
+        return null;
+    }
+
+    public static String getPinId(String url) {
+        if (!UrlManager.isUrlSupported(url)) {
+            return "";
+        }
+        Matcher matcher = PIN_ID_REGEX.matcher(url);
+        if (matcher.find()) {
+            return matcher.group();
+        }
+        return "";
     }
 
     private static JsonObject parseResponseData(JsonObject json) {
@@ -92,6 +115,7 @@ public class PinParser {
     }
 
     private static PinMeta parseMeta(JsonObject data) {
+        if (data == null) { return null; }
         return PinMeta.builder()
                 .createdAt(data.get("createdAt").getAsString())
                 .description(data.get("description").getAsString())
@@ -104,10 +128,12 @@ public class PinParser {
     }
 
     private static String parsePinId(JsonObject data) {
+        if (data == null) { return null; }
         return data.get("entityId").getAsString();
     }
 
     private static Board parseBoard(JsonObject board) {
+        if (board == null) { return null; }
         JsonObject owner = board.getAsJsonObject("owner");
         return Board.builder()
                 .id(board.get("id").getAsString())
@@ -121,6 +147,7 @@ public class PinParser {
     }
 
     private static Pinner parsePinner(JsonObject pinner) {
+        if (pinner == null) { return null; }
         return Pinner.builder()
                 .id(pinner.get("id").getAsString())
                 .entityId(pinner.get("entityId").getAsString())
@@ -131,6 +158,7 @@ public class PinParser {
     }
 
     private static StreamingData parseStreamingData(JsonObject imageSpec) {
+        if (imageSpec == null) { return null; }
         return StreamingData.builder()
                 .width(imageSpec.get("width").getAsInt())
                 .height(imageSpec.get("height").getAsInt())

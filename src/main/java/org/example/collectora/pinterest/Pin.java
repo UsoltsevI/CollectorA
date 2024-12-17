@@ -36,11 +36,12 @@ public class Pin {
     }
 
     public Row toRow() {
-        return new Row(id.getBytes())
-                .put(META_CF, meta.toColumnFamily(META_CF))
-                .put(PINNER_CF, pinner.toColumnFamily(PINNER_CF))
-                .put(ORIGIN_CF, origin.toColumnFamily(ORIGIN_CF))
-                .put(BOARD_CF, board.toColumnFamily(BOARD_CF))
-                .put(STREAMING_DATA_CF, streamingData.toColumnFamily(STREAMING_DATA_CF));
+        Row row = new Row(id.getBytes());
+        if (meta != null) { row.put(META_CF, meta.toColumnFamily(META_CF)); }
+        if (pinner != null) { row.put(PINNER_CF, pinner.toColumnFamily(PINNER_CF)); }
+        if (origin != null) { row.put(ORIGIN_CF, origin.toColumnFamily(ORIGIN_CF)); }
+        if (board != null) { row.put(BOARD_CF, board.toColumnFamily(BOARD_CF)); }
+        if (streamingData != null) { row.put(STREAMING_DATA_CF, streamingData.toColumnFamily(STREAMING_DATA_CF)); }
+        return row;
     }
 }
